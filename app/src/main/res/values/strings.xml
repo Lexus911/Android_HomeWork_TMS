@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Android_HomeWork</string>
+    <string name="go_to_activity_2">GO to activity 2</string>
+    <string name="go_to_activity_3">GO to activity 3</string>
+    <string name="go_to_activity_4">GO to activity 4</string>
+    <string name="show_must_go_on">Show Must Go On</string>
+    <string name="we_will_rock_you">We Will Rock You</string>
+    <string name="no_data">No data</string>
+    <string name="open_act2_marker">OPEN_ACTIVITY2</string>
+    <string name="clicked_second_item">Clicked second item</string>
+    <string name="android_homework_toolbar">Android_HomeWork</string>
+    <string name="textview">TextView</string>
+    <string name="actionbar">ActionBar</string>
+    <string name="move_to_activity_3">Go to activity 3</string>
+    <string name="close_app">Close app</string>
 </resources>
