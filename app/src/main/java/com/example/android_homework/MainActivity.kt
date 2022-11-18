@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             R.id.actionBar -> startMainActivityToolBar(this, "Second item clicked")
             R.id.texView -> startMainActivityTextView(this,textView1.text.toString(),textView2.text.toString())
             R.id.close -> finishAffinity()
-            R.id.goToActivity3 -> startActivity(Intent(this, MainActivity3::class.java)
+            R.id.goToActivity3 -> startActivity(Intent(this, MainActivity4::class.java)
             )
         }
         return super.onOptionsItemSelected(item)

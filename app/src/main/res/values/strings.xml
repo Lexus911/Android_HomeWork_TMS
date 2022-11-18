@@ -11,6 +11,9 @@
     <string name="android_homework_toolbar">Android_HomeWork</string>
     <string name="textview">TextView</string>
     <string name="actionbar">ActionBar</string>
-    <string name="move_to_activity_3">Go to activity 3</string>
+    <string name="move_to_activity_4">Go to activity 4</string>
     <string name="close_app">Close app</string>
+    <string name="sign_up">Sign up</string>
+    <string name="password">Password</string>
+    <string name="e_mail">E-mail</string>
 </resources>
