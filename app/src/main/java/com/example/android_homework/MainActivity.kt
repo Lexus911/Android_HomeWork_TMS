@@ -3,6 +3,7 @@ package com.example.android_homework
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -17,12 +18,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val car = CarEquipment
+            .setAwd(true)
+            .setHorsepower(280)
+            .setFuelType("Gasoline")
+            .setPassengerCapacity(2)
+            .equip()
+
         val btnGoToActivity2 = findViewById<Button>(R.id.btnGoToActivity2)
 
         btnGoToActivity2.setOnClickListener{
+            Log.w("Car Equipment", "${car.howMuchHorsePower()}, ${car.drive()}, ${car.whatFuelType()}, ${car.howMuchPassengers()}")
             startActivity(
                 Intent(getString(R.string.open_act2_marker)))
         }
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
