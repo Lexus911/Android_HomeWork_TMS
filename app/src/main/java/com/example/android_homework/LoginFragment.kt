@@ -6,12 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.RadioButton
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 
 class LoginFragment : Fragment() {
 
@@ -39,11 +34,10 @@ class LoginFragment : Fragment() {
         val editText = view.findViewById<TextInputEditText>(R.id.et_text)
         val editText2 = view.findViewById<TextInputEditText>(R.id.et_text2)
 
-
         toTheMainScreen.setOnClickListener{
 
             if(editText.text.toString().isEmpty()){
-                editText.error = "field e-mail can't be empty"
+                editText.error = "field username can't be empty"
 
             }else if(editText2.text.toString().isEmpty()){
                 editText2.error = "field password can't be empty"
@@ -54,11 +48,7 @@ class LoginFragment : Fragment() {
                 .replace(R.id.activity_container, MainScreenFragment())
                 .commit()
             }
-
         }
-
-
     }
-
 }
 
