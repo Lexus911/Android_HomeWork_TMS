@@ -22,6 +22,17 @@ class LoginFragment : Fragment() {
 
         val toTheMainScreen = view.findViewById<Button>(R.id.btn_Login)
         val toTheRegistration = view.findViewById<Button>(R.id.btn_Registration)
+        val toTheRecyclerView = view.findViewById<Button>(R.id.btn_RecyclerView)
+
+        toTheRecyclerView.setOnClickListener{
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.activity_container, RecyclerViewFragment())
+                .addToBackStack("login_screen")
+                .commit()
+        }
+
+
 
         toTheRegistration.setOnClickListener{
             parentFragmentManager

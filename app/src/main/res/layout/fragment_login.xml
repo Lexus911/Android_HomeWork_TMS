@@ -60,6 +60,22 @@
         app:layout_constraintVertical_bias="0.953"
         tools:ignore="SmallSp" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_RecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_marginTop="88dp"
+        android:backgroundTint="@color/teal_700"
+        android:gravity="center_horizontal"
+        android:text="@string/recyclerview"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.954"
+        tools:ignore="SmallSp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"

@@ -15,4 +15,11 @@
     <string name="nested_fragment">NESTED FRAGMENT</string>
     <string name="back_to_login">Back to Login</string>
     <string name="main_screen">MAIN SCREEN</string>
+    <string name="recyclerview">RecyclerView</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="time">Time</string>
+    <string name="details_title">TITLE</string>
+    <string name="details_description">DESCRIPTION</string>
+    <string name="details_time">TIME</string>
 </resources>
