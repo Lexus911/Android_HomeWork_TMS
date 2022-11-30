@@ -25,9 +25,15 @@ class ItemsViewHolder(private val view: View,
         time.text = itemsModel.time
         imageStar.setBackgroundResource(itemsModel.imageStar)
 
+        var changeStar = true
 
         imageStar.setOnClickListener{
-            itemsListener.onClick()
+            when(changeStar){
+            true -> {imageStar.setImageResource(R.drawable.yellow_star)
+                changeStar = false}
+            false -> {imageStar.setImageResource(R.drawable.white_star)
+                changeStar = true}
+            }
         }
 
         itemView.setOnClickListener{

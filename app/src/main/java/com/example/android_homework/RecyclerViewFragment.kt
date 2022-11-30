@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_homework.adapter.ItemsAdapter
@@ -51,7 +50,6 @@ class RecyclerViewFragment : Fragment(), ItemsListener {
 
     override fun onClick() {
 
-        Toast.makeText(context, "ImageViewClicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun onElementSelected(imageTitle: Int, title: String, description: String, time: String) {
