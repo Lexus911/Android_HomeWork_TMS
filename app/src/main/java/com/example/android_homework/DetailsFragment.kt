@@ -31,10 +31,10 @@ class DetailsFragment : Fragment() {
         val bundle = arguments
         bundle?.let {safeBundle ->
 
-            val title = bundle.getString("title")
-            val description = bundle.getString("description")
-            val time = bundle.getString("time")
-            val imageTitle = bundle.getInt("imageTitle")
+            val title = bundle.getString(KEY_TITLE)
+            val description = bundle.getString(KEY_DESCRIPTION)
+            val time = bundle.getString(KEY_TIME)
+            val imageTitle = bundle.getInt(KEY_IMAGE_TITLE)
 
             detailsTitle.text = title
             detailsDescription.text = description

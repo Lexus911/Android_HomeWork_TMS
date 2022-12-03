@@ -9,9 +9,9 @@ import com.example.android_homework.model.ItemsModel
 
 class ItemsAdapter(private var itemsListener: ItemsListener): RecyclerView.Adapter<ItemsViewHolder>() {
 
-    private var listItems = mutableListOf<ItemsModel>()
+    private var listItems = listOf<ItemsModel>()
 
-    fun submitList(list: MutableList<ItemsModel>){
+    fun submitList(list: List<ItemsModel>){
         this.listItems = list
     }
 
