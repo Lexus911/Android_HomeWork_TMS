@@ -28,16 +28,16 @@ class RegistrationFragment : Fragment() {
 
         toTheMainScreen.setOnClickListener {
             if (editText5.text.toString().isEmpty()) {
-                editText5.error = "field first name can't be empty"
+                editText5.error = KEY_FIELD_FIRSTNAME
 
             } else if (editText3.text.toString().isEmpty()) {
-                editText3.error = "field e-mail can't be empty"
+                editText3.error = KEY_FIELD_E_MAIL
 
             } else if (editText6.text.toString().isEmpty()) {
-                editText6.error = "field user name can't be empty"
+                editText6.error = KEY_FIELD_USERNAME
 
             } else if (editText4.text.toString().isEmpty()) {
-                editText4.error = "field password can't be empty"
+                editText4.error = KEY_FIELD_PASSWORD
             } else {
                 parentFragmentManager
                     .beginTransaction()

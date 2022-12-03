@@ -28,7 +28,7 @@ class LoginFragment : Fragment() {
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_container, RecyclerViewFragment())
-                .addToBackStack("login_screen")
+                .addToBackStack(KEY_BACKSTACK_LOGIN)
                 .commit()
         }
 
@@ -38,7 +38,7 @@ class LoginFragment : Fragment() {
             parentFragmentManager
                 .beginTransaction()
                 .add(R.id.activity_container, RegistrationFragment())
-                .addToBackStack("login_screen")
+                .addToBackStack(KEY_BACKSTACK_LOGIN)
                 .commit()
         }
 
@@ -48,10 +48,10 @@ class LoginFragment : Fragment() {
         toTheMainScreen.setOnClickListener{
 
             if(editText.text.toString().isEmpty()){
-                editText.error = "field username can't be empty"
+                editText.error = KEY_FIELD_USERNAME
 
             }else if(editText2.text.toString().isEmpty()){
-                editText2.error = "field password can't be empty"
+                editText2.error = KEY_FIELD_PASSWORD
             }
             else {
                 parentFragmentManager

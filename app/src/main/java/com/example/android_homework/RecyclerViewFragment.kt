@@ -54,7 +54,7 @@ class RecyclerViewFragment : Fragment(), ItemsListener {
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_container, detailsFragment)
-                .addToBackStack(KEY_BACKSTACK_NAME)
+                .addToBackStack(KEY_BACKSTACK_DETAILS)
                 .commit()
         }
 
