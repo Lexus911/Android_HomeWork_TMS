@@ -11,7 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android_homework.adapter.ItemsAdapter
 import com.example.android_homework.listener.ItemsListener
 
-
+const val KEY_IMAGE_TITLE = "imageTitle"
+const val KEY_TITLE = "title"
+const val KEY_DESCRIPTION = "description"
+const val KEY_TIME = "time"
+const val details = "details"
 
 class RecyclerViewFragment : Fragment(), ItemsListener {
 
@@ -54,7 +58,7 @@ class RecyclerViewFragment : Fragment(), ItemsListener {
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_container, detailsFragment)
-                .addToBackStack(KEY_BACKSTACK_DETAILS)
+                .addToBackStack(details)
                 .commit()
         }
 

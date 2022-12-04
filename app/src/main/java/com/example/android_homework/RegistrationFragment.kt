@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.google.android.material.textfield.TextInputEditText
 
+const val ErrorFieldE_mail = "field e-mail can't be empty"
+const val ErrorFiledFirstname = "field first name can't be empty"
+
 class RegistrationFragment : Fragment() {
 
     override fun onCreateView(
@@ -28,16 +31,16 @@ class RegistrationFragment : Fragment() {
 
         toTheMainScreen.setOnClickListener {
             if (editText5.text.toString().isEmpty()) {
-                editText5.error = KEY_FIELD_FIRSTNAME
+                editText5.error = ErrorFiledFirstname
 
             } else if (editText3.text.toString().isEmpty()) {
-                editText3.error = KEY_FIELD_E_MAIL
+                editText3.error = ErrorFieldE_mail
 
             } else if (editText6.text.toString().isEmpty()) {
-                editText6.error = KEY_FIELD_USERNAME
+                editText6.error = ErrorFieldUsername
 
             } else if (editText4.text.toString().isEmpty()) {
-                editText4.error = KEY_FIELD_PASSWORD
+                editText4.error = ErrorFieldPassword
             } else {
                 parentFragmentManager
                     .beginTransaction()

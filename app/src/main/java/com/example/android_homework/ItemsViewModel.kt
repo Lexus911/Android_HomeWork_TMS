@@ -7,17 +7,6 @@ import com.example.android_homework.model.ItemsModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-const val KEY_IMAGE_TITLE = "imageTitle"
-const val KEY_TITLE = "title"
-const val KEY_DESCRIPTION = "description"
-const val KEY_TIME = "time"
-const val KEY_BACKSTACK_DETAILS = "Details"
-const val KEY_BACKSTACK_LOGIN = "login_screen"
-const val KEY_FIELD_USERNAME = "field username can't be empty"
-const val KEY_FIELD_PASSWORD = "field password can't be empty"
-const val KEY_FIELD_E_MAIL = "field e-mail can't be empty"
-const val KEY_FIELD_FIRSTNAME = "field first name can't be empty"
-
 class ItemsViewModel: ViewModel() {
 
         private val _items = MutableLiveData<List<ItemsModel>>()

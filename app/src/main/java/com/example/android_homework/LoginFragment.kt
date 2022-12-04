@@ -8,6 +8,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.google.android.material.textfield.TextInputEditText
 
+const val ErrorFieldUsername = "field username can't be empty"
+const val ErrorFieldPassword = "field password can't be empty"
+const val BackstackLogin = "login_screen"
+
 class LoginFragment : Fragment() {
 
     override fun onCreateView(
@@ -24,34 +28,34 @@ class LoginFragment : Fragment() {
         val toTheRegistration = view.findViewById<Button>(R.id.btn_Registration)
         val toTheRecyclerView = view.findViewById<Button>(R.id.btn_RecyclerView)
 
+
         toTheRecyclerView.setOnClickListener{
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_container, RecyclerViewFragment())
-                .addToBackStack(KEY_BACKSTACK_LOGIN)
+                .addToBackStack(BackstackLogin)
                 .commit()
         }
-
-
 
         toTheRegistration.setOnClickListener{
             parentFragmentManager
                 .beginTransaction()
                 .add(R.id.activity_container, RegistrationFragment())
-                .addToBackStack(KEY_BACKSTACK_LOGIN)
+                .addToBackStack(BackstackLogin)
                 .commit()
         }
 
         val editText = view.findViewById<TextInputEditText>(R.id.et_text)
         val editText2 = view.findViewById<TextInputEditText>(R.id.et_text2)
 
+
         toTheMainScreen.setOnClickListener{
 
             if(editText.text.toString().isEmpty()){
-                editText.error = KEY_FIELD_USERNAME
+                editText.error = ErrorFieldUsername
 
             }else if(editText2.text.toString().isEmpty()){
-                editText2.error = KEY_FIELD_PASSWORD
+                editText2.error = ErrorFieldPassword
             }
             else {
                 parentFragmentManager
