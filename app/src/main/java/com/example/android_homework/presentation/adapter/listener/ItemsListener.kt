@@ -1,4 +1,4 @@
-package com.example.android_homework.listener
+package com.example.android_homework.presentation.adapter.listener
 
 interface ItemsListener {
     fun onClick()

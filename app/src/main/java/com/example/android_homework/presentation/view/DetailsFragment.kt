@@ -1,32 +1,27 @@
-package com.example.android_homework
+package com.example.android_homework.presentation.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import com.example.android_homework.databinding.FragmentDetailsBinding
 
 
 class DetailsFragment : Fragment() {
+    private var _viewBinding: FragmentDetailsBinding? = null
+    private val viewBinding get() = _viewBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.fragment_details, container, false)
+    ): View {
+        _viewBinding = FragmentDetailsBinding.inflate(inflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val detailsImageTitle = view.findViewById<ImageView>(R.id.details_imageTitle)
-        val detailsTitle = view.findViewById<TextView>(R.id.details_title)
-        val detailsDescription = view.findViewById<TextView>(R.id.details_description)
-        val detailsTime = view.findViewById<TextView>(R.id.details_time)
-
 
         val bundle = arguments
         bundle?.let {safeBundle ->
@@ -36,10 +31,10 @@ class DetailsFragment : Fragment() {
             val time = bundle.getString(KEY_TIME)
             val imageTitle = bundle.getInt(KEY_IMAGE_TITLE)
 
-            detailsTitle.text = title
-            detailsDescription.text = description
-            detailsTime.text = time
-            detailsImageTitle.setBackgroundResource(imageTitle)
+            viewBinding.detailsTitle.text = title
+            viewBinding.detailsDescription.text = description
+            viewBinding.detailsTime.text = time
+            viewBinding.detailsImageTitle.setBackgroundResource(imageTitle)
         }
     }
 }

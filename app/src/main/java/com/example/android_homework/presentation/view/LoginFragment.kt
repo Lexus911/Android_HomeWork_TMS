@@ -1,35 +1,32 @@
-package com.example.android_homework
+package com.example.android_homework.presentation.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import com.google.android.material.textfield.TextInputEditText
+import com.example.android_homework.R
+import com.example.android_homework.databinding.FragmentLoginBinding
 
-const val ErrorFieldUsername = "field username can't be empty"
-const val ErrorFieldPassword = "field password can't be empty"
+
 const val BackstackLogin = "login_screen"
 
 class LoginFragment : Fragment() {
 
+    private var _viewBinding: FragmentLoginBinding? = null
+    private val viewBinding get() = _viewBinding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.fragment_login, container, false)
+    ): View {
+        _viewBinding = FragmentLoginBinding.inflate(inflater)
+        return viewBinding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val toTheMainScreen = view.findViewById<Button>(R.id.btn_Login)
-        val toTheRegistration = view.findViewById<Button>(R.id.btn_Registration)
-        val toTheRecyclerView = view.findViewById<Button>(R.id.btn_RecyclerView)
-
-
-        toTheRecyclerView.setOnClickListener{
+        viewBinding.btnRecyclerView.setOnClickListener{
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_container, RecyclerViewFragment())
@@ -37,7 +34,7 @@ class LoginFragment : Fragment() {
                 .commit()
         }
 
-        toTheRegistration.setOnClickListener{
+        viewBinding.btnRegistration.setOnClickListener{
             parentFragmentManager
                 .beginTransaction()
                 .add(R.id.activity_container, RegistrationFragment())
@@ -45,17 +42,13 @@ class LoginFragment : Fragment() {
                 .commit()
         }
 
-        val editText = view.findViewById<TextInputEditText>(R.id.et_text)
-        val editText2 = view.findViewById<TextInputEditText>(R.id.et_text2)
+        viewBinding.btnLogin.setOnClickListener{
 
+            if(viewBinding.etText.text.toString().isEmpty()){
+                viewBinding.etText.error = getString(R.string.error_field_username)
 
-        toTheMainScreen.setOnClickListener{
-
-            if(editText.text.toString().isEmpty()){
-                editText.error = ErrorFieldUsername
-
-            }else if(editText2.text.toString().isEmpty()){
-                editText2.error = ErrorFieldPassword
+            }else if(viewBinding.etText2.text.toString().isEmpty()){
+                viewBinding.etText2.error = getString(R.string.error_field_password)
             }
             else {
                 parentFragmentManager

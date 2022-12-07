@@ -1,4 +1,4 @@
-package com.example.android_homework
+package com.example.android_homework.presentation.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.android_homework.R
+
 
 class MainScreenFragment : Fragment() {
 
@@ -26,16 +28,18 @@ class MainScreenFragment : Fragment() {
             .add(R.id.fragment_container, NestedFragment())
             .commit()
 
+
         val  dialog = AlertDialog.Builder(requireContext())
-            .setTitle("Congratulations!")
-            .setMessage("Welcome to WeWillRockYou.com\nWe are glad to see you with us")
+            .setTitle(getString(R.string.congratulations))
+            .setMessage(getString(R.string.welcome))
             .setCancelable(false)
-            .setPositiveButton("OK"){dialog, _ ->
-                Toast.makeText(requireContext(), "called ok", Toast.LENGTH_SHORT).show()
+            .setPositiveButton(getString(R.string.ok)){ dialog, _ ->
+                Toast.makeText(requireContext(), getString(R.string.calle_ok), Toast.LENGTH_SHORT).show()
             }
-            .setNegativeButton("Cancel"){dialog, _ ->
+            .setNegativeButton(getString(R.string.cancel)){ dialog, _ ->
                 dialog.cancel()
             }
+
         dialog.show()
     }
 }

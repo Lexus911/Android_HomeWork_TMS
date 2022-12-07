@@ -1,7 +1,8 @@
-package com.example.android_homework
+package com.example.android_homework.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.android_homework.R
 
 class MainActivity : AppCompatActivity() {
 

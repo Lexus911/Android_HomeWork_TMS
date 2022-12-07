@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Android_HomeWork</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="wewillrockyou_com">WeWillRockYou.com</string>
+    <string name="we_will_rock_you_com">WeWillRockYou.com</string>
     <string name="login">Login</string>
     <string name="registration">Registration</string>
     <string name="password">password</string>
@@ -21,4 +21,16 @@
     <string name="details_title">TITLE</string>
     <string name="details_description">DESCRIPTION</string>
     <string name="details_time">TIME</string>
+
+    <string name="error_field_username">field username can\'t be empty</string>
+    <string name="error_field_password">field password can\'t be empty</string>
+    <string name="error_field_email">field e-mail can\'t be empty</string>
+    <string name="error_field_firstname">field first name can\'t be empty</string>
+
+    <string name="congratulations">Congratulations!</string>
+    <string name="ok">OK</string>
+    <string name="calle_ok">called OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="welcome">Welcome to WeWillRockYou.com\nWe are glad to see you with us</string>
+
 </resources>
