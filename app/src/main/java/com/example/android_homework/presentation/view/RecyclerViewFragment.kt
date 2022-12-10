@@ -10,6 +10,7 @@ import com.example.android_homework.presentation.ItemsViewModel
 import com.example.android_homework.R
 import com.example.android_homework.presentation.adapter.ItemsAdapter
 import com.example.android_homework.databinding.FragmentRecyclerViewBinding
+
 import com.example.android_homework.presentation.adapter.listener.ItemsListener
 
 const val KEY_IMAGE_TITLE = "imageTitle"
