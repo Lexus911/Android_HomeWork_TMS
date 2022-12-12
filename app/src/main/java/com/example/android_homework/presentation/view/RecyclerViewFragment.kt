@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.android_homework.presentation.ItemsViewModel
 import com.example.android_homework.R
+import com.example.android_homework.data.ItemsRepositoryImpl
 import com.example.android_homework.presentation.adapter.ItemsAdapter
 import com.example.android_homework.databinding.FragmentRecyclerViewBinding
+import com.example.android_homework.domain.ItemsInteractor
+import com.example.android_homework.presentation.ItemsViewModelFactory
 
 import com.example.android_homework.presentation.adapter.listener.ItemsListener
 
@@ -22,7 +25,13 @@ const val details = "details"
 class RecyclerViewFragment : Fragment(), ItemsListener {
 
     private lateinit var itemsAdapter: ItemsAdapter
-    private val viewModel: ItemsViewModel by viewModels()
+    private val viewModel: ItemsViewModel by viewModels{
+        ItemsViewModelFactory(
+            ItemsInteractor(
+        ItemsRepositoryImpl()
+    )
+        )
+    }
 
     private var _viewBinding: FragmentRecyclerViewBinding? = null
     private val viewBinding get() = _viewBinding!!
