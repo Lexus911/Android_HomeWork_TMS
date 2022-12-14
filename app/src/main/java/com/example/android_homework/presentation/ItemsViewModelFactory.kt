@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.android_homework.domain.ItemsInteractor
 
+
 class ItemsViewModelFactory(
     private val itemsInteractor: ItemsInteractor
 ): ViewModelProvider.Factory {

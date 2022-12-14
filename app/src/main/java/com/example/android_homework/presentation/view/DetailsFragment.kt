@@ -5,12 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.android_homework.databinding.FragmentDetailsBinding
+import com.example.android_homework.presentation.DetailsViewModel
 
 
 class DetailsFragment : Fragment() {
+
     private var _viewBinding: FragmentDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
+
+    private val viewModel: DetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,18 +28,21 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bundle = arguments
-        bundle?.let {safeBundle ->
+        viewModel.details.observe(viewLifecycleOwner) {
 
-            val title = bundle.getString(KEY_TITLE)
-            val description = bundle.getString(KEY_DESCRIPTION)
-            val time = bundle.getString(KEY_TIME)
-            val imageTitle = bundle.getInt(KEY_IMAGE_TITLE)
+            val bundle = arguments
+            bundle?.let {
+                val title = bundle.getString(KEY_TITLE)
+                val description = bundle.getString(KEY_DESCRIPTION)
+                val time = bundle.getString(KEY_TIME)
+                val imageTitle = bundle.getInt(KEY_IMAGE_TITLE)
 
-            viewBinding.detailsTitle.text = title
-            viewBinding.detailsDescription.text = description
-            viewBinding.detailsTime.text = time
-            viewBinding.detailsImageTitle.setBackgroundResource(imageTitle)
+                viewBinding.detailsTitle.text = title
+                viewBinding.detailsDescription.text = description
+                viewBinding.detailsTime.text = time
+                viewBinding.detailsImageTitle.setBackgroundResource(imageTitle)
+            }
         }
+        viewModel.showDetails()
     }
 }

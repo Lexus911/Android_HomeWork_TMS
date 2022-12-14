@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.android_homework.presentation.ItemsViewModel
-import com.example.android_homework.R
 import com.example.android_homework.data.ItemsRepositoryImpl
 import com.example.android_homework.presentation.adapter.ItemsAdapter
 import com.example.android_homework.databinding.FragmentRecyclerViewBinding
 import com.example.android_homework.domain.ItemsInteractor
+import com.example.android_homework.presentation.ItemsViewModel
 import com.example.android_homework.presentation.ItemsViewModelFactory
 
 import com.example.android_homework.presentation.adapter.listener.ItemsListener
@@ -20,7 +19,7 @@ const val KEY_IMAGE_TITLE = "imageTitle"
 const val KEY_TITLE = "title"
 const val KEY_DESCRIPTION = "description"
 const val KEY_TIME = "time"
-const val details = "details"
+
 
 class RecyclerViewFragment : Fragment(), ItemsListener {
 
@@ -70,20 +69,10 @@ class RecyclerViewFragment : Fragment(), ItemsListener {
 
                 detailsFragment.arguments = bundle
 
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, detailsFragment)
-                    .addToBackStack(details)
-                    .commit()
-
+                Navigator.replace(parentFragmentManager,detailsFragment,true)
                 viewModel.userNavigated()
             }
         }
-
-    }
-
-    override fun onClick() {
-
     }
 
     override fun onElementSelected(imageTitle: Int, title: String, description: String, time: String) {

@@ -5,13 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.android_homework.R
+import androidx.fragment.app.viewModels
 import com.example.android_homework.databinding.FragmentNestedBinding
+import com.example.android_homework.presentation.NestedViewModel
 
 class NestedFragment : Fragment() {
 
     private var _viewBinding: FragmentNestedBinding? = null
     private val viewBinding get() = _viewBinding!!
+
+    private val viewModel: NestedViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,12 +26,14 @@ class NestedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewBinding.btnBackToLogin.setOnClickListener {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, LoginFragment())
-            .commit()
+        viewModel.nav.observe(viewLifecycleOwner) {
+            Navigator.replace(parentFragmentManager,LoginFragment(),false)
         }
+
+        viewBinding.btnBackToLogin.setOnClickListener {
+            viewModel.backToLoginButtonClick()
+        }
+
     }
 
 }
