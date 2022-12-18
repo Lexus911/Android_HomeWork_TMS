@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 
 class ItemsPresenter @Inject constructor(private val itemsView: ItemsView,
-                                                private val itemsInteractor: ItemsInteractor
+                                         private val itemsInteractor: ItemsInteractor
 ) {
     fun getData(){
         val listItems = itemsInteractor.getData()

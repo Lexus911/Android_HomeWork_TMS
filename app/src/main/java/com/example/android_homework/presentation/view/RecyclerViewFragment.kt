@@ -6,14 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.android_homework.R
-import com.example.android_homework.data.ItemsRepositoryImpl
 import com.example.android_homework.presentation.adapter.ItemsAdapter
 import com.example.android_homework.databinding.FragmentRecyclerViewBinding
-import com.example.android_homework.domain.ItemsInteractor
 import com.example.android_homework.presentation.ItemsPresenter
 import com.example.android_homework.presentation.ItemsView
 import com.example.android_homework.presentation.adapter.listener.ItemsListener
 import com.example.android_homework.presentation.model.ItemsModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 const val KEY_IMAGE_TITLE = "imageTitle"
 const val KEY_TITLE = "title"
@@ -21,11 +21,13 @@ const val KEY_DESCRIPTION = "description"
 const val KEY_TIME = "time"
 const val details = "details"
 
+@AndroidEntryPoint
 class RecyclerViewFragment : Fragment(), ItemsListener, ItemsView {
 
     private lateinit var itemsAdapter: ItemsAdapter
 
-    private lateinit var itemsPresenter: ItemsPresenter
+
+    @Inject lateinit var itemsPresenter: ItemsPresenter
 
     private var _viewBinding: FragmentRecyclerViewBinding? = null
     private val viewBinding get() = _viewBinding!!
@@ -41,16 +43,10 @@ class RecyclerViewFragment : Fragment(), ItemsListener, ItemsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        itemsPresenter = ItemsPresenter(this, ItemsInteractor(ItemsRepositoryImpl()))
-
         itemsAdapter = ItemsAdapter(this)
         viewBinding.recyclerView.adapter = itemsAdapter
 
         itemsPresenter.getData()
-
-    }
-
-    override fun onClick() {
 
     }
 

@@ -12,7 +12,5 @@ import dagger.hilt.components.SingletonComponent
 abstract class DataModule {
 
     @Binds
-    abstract fun bindItemsRepository(
-        itemsRepositoryImpl: ItemsRepositoryImpl
-    ): ItemsRepository
+    abstract fun bindItemsRepository(itemsRepositoryImpl: ItemsRepositoryImpl): ItemsRepository
 }
