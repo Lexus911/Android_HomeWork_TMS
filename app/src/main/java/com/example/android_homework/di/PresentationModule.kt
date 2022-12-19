@@ -1,20 +1,18 @@
 package com.example.android_homework.di
 
 import com.example.android_homework.domain.ItemsInteractor
-import com.example.android_homework.domain.ItemsRepository
+import com.example.android_homework.presentation.ItemsPresenter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
-
 @Module
 @InstallIn(SingletonComponent::class)
-class DomainModule {
+class PresentationModule {
 
     @Provides
-    fun provideItemsInteractor(itemsRepository: ItemsRepository): ItemsInteractor {
-        return ItemsInteractor(itemsRepository)
+    fun provideItemsPresenter(itemsInteractor: ItemsInteractor): ItemsPresenter {
+        return ItemsPresenter(itemsInteractor)
     }
-
 }

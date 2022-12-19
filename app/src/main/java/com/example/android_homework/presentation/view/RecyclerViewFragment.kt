@@ -26,8 +26,8 @@ class RecyclerViewFragment : Fragment(), ItemsListener, ItemsView {
 
     private lateinit var itemsAdapter: ItemsAdapter
 
-
-    @Inject lateinit var itemsPresenter: ItemsPresenter
+    @Inject
+    lateinit var itemsPresenter: ItemsPresenter
 
     private var _viewBinding: FragmentRecyclerViewBinding? = null
     private val viewBinding get() = _viewBinding!!
@@ -42,6 +42,8 @@ class RecyclerViewFragment : Fragment(), ItemsListener, ItemsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        itemsPresenter.setView(this)
 
         itemsAdapter = ItemsAdapter(this)
         viewBinding.recyclerView.adapter = itemsAdapter

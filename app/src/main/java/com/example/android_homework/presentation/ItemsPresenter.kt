@@ -4,9 +4,14 @@ import com.example.android_homework.domain.ItemsInteractor
 import javax.inject.Inject
 
 
-class ItemsPresenter @Inject constructor(private val itemsView: ItemsView,
-                                         private val itemsInteractor: ItemsInteractor
-) {
+class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInteractor) {
+
+    private lateinit var itemsView: ItemsView
+
+    fun setView(context: ItemsView){
+        itemsView = context
+    }
+
     fun getData(){
         val listItems = itemsInteractor.getData()
         itemsView.dataReceived(listItems)
