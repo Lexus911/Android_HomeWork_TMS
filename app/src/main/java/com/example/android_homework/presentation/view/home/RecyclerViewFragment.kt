@@ -1,4 +1,4 @@
-package com.example.android_homework.presentation.view
+package com.example.android_homework.presentation.view.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import com.example.android_homework.R
 import com.example.android_homework.presentation.adapter.ItemsAdapter
 import com.example.android_homework.databinding.FragmentRecyclerViewBinding
-import com.example.android_homework.presentation.ItemsPresenter
-import com.example.android_homework.presentation.ItemsView
 import com.example.android_homework.presentation.adapter.listener.ItemsListener
 import com.example.android_homework.presentation.model.ItemsModel
 import dagger.hilt.android.AndroidEntryPoint

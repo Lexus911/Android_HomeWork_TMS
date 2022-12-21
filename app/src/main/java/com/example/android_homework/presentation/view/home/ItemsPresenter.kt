@@ -1,6 +1,6 @@
-package com.example.android_homework.presentation
+package com.example.android_homework.presentation.view.home
 
-import com.example.android_homework.domain.ItemsInteractor
+import com.example.android_homework.domain.items.ItemsInteractor
 import javax.inject.Inject
 
 

@@ -1,4 +1,4 @@
-package com.example.android_homework.presentation.view
+package com.example.android_homework.presentation.view.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentNestedBinding
+import com.example.android_homework.presentation.view.auth.LoginFragment
 
 class NestedFragment : Fragment() {
 

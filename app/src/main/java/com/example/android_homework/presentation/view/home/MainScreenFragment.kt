@@ -1,4 +1,4 @@
-package com.example.android_homework.presentation.view
+package com.example.android_homework.presentation.view.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.android_homework.R
+import com.example.android_homework.presentation.model.UserModel
+import com.example.android_homework.presentation.view.auth.AuthPresenter
+import javax.inject.Inject
 
 
 class MainScreenFragment : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

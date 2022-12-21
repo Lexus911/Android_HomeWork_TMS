@@ -1,4 +1,4 @@
-package com.example.android_homework.presentation.view
+package com.example.android_homework.presentation.view.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentLoginBinding
+import com.example.android_homework.presentation.view.home.ItemsPresenter
+import com.example.android_homework.presentation.view.home.MainScreenFragment
+import com.example.android_homework.presentation.view.home.RecyclerViewFragment
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 const val BackstackLogin = "login_screen"
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _viewBinding: FragmentLoginBinding? = null
     private val viewBinding get() = _viewBinding!!
+
+    @Inject
+    lateinit var authPresenter: AuthPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +60,10 @@ class LoginFragment : Fragment() {
                 viewBinding.etText2.error = getString(R.string.error_field_password)
             }
             else {
+                authPresenter.loginUser(
+                viewBinding.etText.text.toString(),
+                viewBinding.etText2.text.toString())
+
                 parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_container, MainScreenFragment())

@@ -1,7 +1,7 @@
-package com.example.android_homework.data
+package com.example.android_homework.data.items
 
 import com.example.android_homework.R
-import com.example.android_homework.domain.ItemsRepository
+import com.example.android_homework.domain.items.ItemsRepository
 import com.example.android_homework.presentation.model.ItemsModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
