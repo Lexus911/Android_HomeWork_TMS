@@ -32,5 +32,6 @@
     <string name="calle_ok">called OK</string>
     <string name="cancel">Cancel</string>
     <string name="welcome">Welcome to WeWillRockYou.com\nWe are glad to see you with us</string>
+    <string name="logout">Logout</string>
 
 </resources>

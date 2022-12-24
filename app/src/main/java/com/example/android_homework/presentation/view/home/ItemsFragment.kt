@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.android_homework.R
-import com.example.android_homework.presentation.adapter.ItemsAdapter
 import com.example.android_homework.databinding.FragmentRecyclerViewBinding
+import com.example.android_homework.presentation.adapter.ItemsAdapter
 import com.example.android_homework.presentation.adapter.listener.ItemsListener
 import com.example.android_homework.presentation.model.ItemsModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +20,7 @@ const val KEY_TIME = "time"
 const val details = "details"
 
 @AndroidEntryPoint
-class RecyclerViewFragment : Fragment(), ItemsListener, ItemsView {
+class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
     private lateinit var itemsAdapter: ItemsAdapter
 

@@ -8,12 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.android_homework.R
-import com.example.android_homework.presentation.model.UserModel
-import com.example.android_homework.presentation.view.auth.AuthPresenter
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class MainScreenFragment : Fragment() {
+@AndroidEntryPoint
+class MainScreenFragment : Fragment(), MainScreenView {
 
 
     override fun onCreateView(
@@ -31,7 +29,6 @@ class MainScreenFragment : Fragment() {
             .beginTransaction()
             .add(R.id.fragment_container, NestedFragment())
             .commit()
-
 
         val  dialog = AlertDialog.Builder(requireContext())
             .setTitle(getString(R.string.congratulations))

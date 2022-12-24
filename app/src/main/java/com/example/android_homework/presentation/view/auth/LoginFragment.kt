@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentLoginBinding
-import com.example.android_homework.presentation.view.home.ItemsPresenter
+import com.example.android_homework.presentation.view.home.ItemsFragment
 import com.example.android_homework.presentation.view.home.MainScreenFragment
-import com.example.android_homework.presentation.view.home.RecyclerViewFragment
+
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -17,13 +17,13 @@ import javax.inject.Inject
 const val BackstackLogin = "login_screen"
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(), LoginView {
 
     private var _viewBinding: FragmentLoginBinding? = null
     private val viewBinding get() = _viewBinding!!
 
     @Inject
-    lateinit var authPresenter: AuthPresenter
+    lateinit var loginPresenter: LoginPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,20 +35,14 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loginPresenter.setView(this)
+
         viewBinding.btnRecyclerView.setOnClickListener{
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, RecyclerViewFragment())
-                .addToBackStack(BackstackLogin)
-                .commit()
+            loginPresenter.goToRecyclerView()
         }
 
         viewBinding.btnRegistration.setOnClickListener{
-            parentFragmentManager
-                .beginTransaction()
-                .add(R.id.activity_container, RegistrationFragment())
-                .addToBackStack(BackstackLogin)
-                .commit()
+           loginPresenter.goToRegistration()
         }
 
         viewBinding.btnLogin.setOnClickListener{
@@ -60,16 +54,34 @@ class LoginFragment : Fragment() {
                 viewBinding.etText2.error = getString(R.string.error_field_password)
             }
             else {
-                authPresenter.loginUser(
+                loginPresenter.loginUser(
                 viewBinding.etText.text.toString(),
                 viewBinding.etText2.text.toString())
-
-                parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, MainScreenFragment())
-                .commit()
             }
         }
+    }
+
+    override fun userLoggedIn() {
+        parentFragmentManager
+            .beginTransaction()
+            .replace(R.id.activity_container, MainScreenFragment())
+            .commit()
+    }
+
+    override fun goToRegistration() {
+        parentFragmentManager
+            .beginTransaction()
+            .add(R.id.activity_container, RegistrationFragment())
+            .addToBackStack(BackstackLogin)
+            .commit()
+    }
+
+    override fun goToRecyclerView() {
+        parentFragmentManager
+            .beginTransaction()
+            .replace(R.id.activity_container, ItemsFragment())
+            .addToBackStack(BackstackLogin)
+            .commit()
     }
 }
 

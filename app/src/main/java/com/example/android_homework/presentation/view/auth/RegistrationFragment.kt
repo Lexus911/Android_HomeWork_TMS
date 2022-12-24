@@ -8,11 +8,17 @@ import android.view.ViewGroup
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentRegistrationBinding
 import com.example.android_homework.presentation.view.home.MainScreenFragment
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class RegistrationFragment : Fragment() {
+@AndroidEntryPoint
+class RegistrationFragment : Fragment(), RegistrationView {
 
     private var _viewBinding: FragmentRegistrationBinding? = null
     private val viewBinding get() = _viewBinding!!
+
+    @Inject
+    lateinit var registrationPresenter: RegistrationPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,10 +26,12 @@ class RegistrationFragment : Fragment() {
     ): View {
         _viewBinding = FragmentRegistrationBinding.inflate(inflater)
         return viewBinding.root
-
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        registrationPresenter.setView(this)
 
         viewBinding.btnSignUp.setOnClickListener {
             if (viewBinding.etText5.text.toString().isEmpty()) {
@@ -38,12 +46,16 @@ class RegistrationFragment : Fragment() {
             } else if (viewBinding.etText4.text.toString().isEmpty()) {
                 viewBinding.etText4.error = getString(R.string.error_field_password)
             } else {
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, MainScreenFragment())
-                    .commit()
+                registrationPresenter.registerUser()
             }
         }
+    }
+
+    override fun registerUser() {
+        parentFragmentManager
+            .beginTransaction()
+            .replace(R.id.activity_container, MainScreenFragment())
+            .commit()
     }
 
 }
