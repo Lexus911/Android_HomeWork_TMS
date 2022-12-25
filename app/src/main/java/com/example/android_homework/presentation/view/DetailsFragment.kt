@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.android_homework.databinding.FragmentDetailsBinding
-import com.example.android_homework.presentation.DetailsViewModel
 
 
 class DetailsFragment : Fragment() {

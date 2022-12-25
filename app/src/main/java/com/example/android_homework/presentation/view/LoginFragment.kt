@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentLoginBinding
-import com.example.android_homework.presentation.LoginViewModel
 
 class LoginFragment : Fragment() {
 

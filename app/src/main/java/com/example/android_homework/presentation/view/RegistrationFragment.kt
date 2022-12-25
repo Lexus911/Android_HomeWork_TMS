@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentRegistrationBinding
-import com.example.android_homework.presentation.RegistrationViewModel
 
 class RegistrationFragment : Fragment() {
 

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.android_homework.R
-import com.example.android_homework.presentation.MainActivityViewModel
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.example.android_homework.presentation
+package com.example.android_homework.presentation.view
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

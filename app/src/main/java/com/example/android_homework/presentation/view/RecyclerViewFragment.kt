@@ -10,8 +10,6 @@ import com.example.android_homework.data.ItemsRepositoryImpl
 import com.example.android_homework.presentation.adapter.ItemsAdapter
 import com.example.android_homework.databinding.FragmentRecyclerViewBinding
 import com.example.android_homework.domain.ItemsInteractor
-import com.example.android_homework.presentation.ItemsViewModel
-import com.example.android_homework.presentation.ItemsViewModelFactory
 
 import com.example.android_homework.presentation.adapter.listener.ItemsListener
 
