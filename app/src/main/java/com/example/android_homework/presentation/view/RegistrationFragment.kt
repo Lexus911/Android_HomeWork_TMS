@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentRegistrationBinding
+import com.example.android_homework.presentation.view.utils.Navigator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegistrationFragment : Fragment() {
 
     private var _viewBinding: FragmentRegistrationBinding? = null

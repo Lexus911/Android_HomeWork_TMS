@@ -1,12 +1,13 @@
-package com.example.android_homework.data
+package com.example.android_homework.data.items
 
 import com.example.android_homework.R
-import com.example.android_homework.domain.ItemsRepository
+import com.example.android_homework.domain.items.ItemsRepository
 import com.example.android_homework.presentation.model.ItemsModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import javax.inject.Inject
 
-class ItemsRepositoryImpl: ItemsRepository {
+class ItemsRepositoryImpl @Inject constructor(): ItemsRepository {
     override fun getData(): List<ItemsModel> {
         val time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))
         return listOf(

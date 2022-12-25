@@ -2,7 +2,7 @@ package com.example.android_homework.presentation.view
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.android_homework.domain.ItemsInteractor
+import com.example.android_homework.domain.items.ItemsInteractor
 
 
 class ItemsViewModelFactory(

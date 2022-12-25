@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.android_homework.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainActivityViewModel by viewModels()
@@ -13,11 +15,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.main.observe(this) {
-            val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.activity_container, LoginFragment())
-            fragmentTransaction.commit()
+        viewModel.checkUserExists()
+
+        viewModel.userExists.observe(this) {
+          supportFragmentManager.beginTransaction()
+            .add(
+                R.id.activity_container,
+                when (it) {
+                    true -> MainScreenFragment()
+                    false -> LoginFragment()
+                }
+            )
+            .commit()
         }
-        viewModel.showAll()
     }
 }

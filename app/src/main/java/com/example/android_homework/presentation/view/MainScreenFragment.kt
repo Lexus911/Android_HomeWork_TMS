@@ -9,8 +9,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.example.android_homework.R
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainScreenFragment : Fragment() {
 
     private val viewModel: MainScreenViewModel by viewModels()

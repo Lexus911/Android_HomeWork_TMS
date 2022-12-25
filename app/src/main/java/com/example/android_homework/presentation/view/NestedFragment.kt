@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.android_homework.databinding.FragmentNestedBinding
+import com.example.android_homework.presentation.view.utils.Navigator
+
+
 
 class NestedFragment : Fragment() {
 

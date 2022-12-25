@@ -6,20 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.android_homework.data.ItemsRepositoryImpl
+import com.example.android_homework.data.items.ItemsRepositoryImpl
 import com.example.android_homework.presentation.adapter.ItemsAdapter
 import com.example.android_homework.databinding.FragmentRecyclerViewBinding
-import com.example.android_homework.domain.ItemsInteractor
+import com.example.android_homework.domain.items.ItemsInteractor
 
 import com.example.android_homework.presentation.adapter.listener.ItemsListener
+import com.example.android_homework.presentation.view.utils.Navigator
+import dagger.hilt.android.AndroidEntryPoint
 
 const val KEY_IMAGE_TITLE = "imageTitle"
 const val KEY_TITLE = "title"
 const val KEY_DESCRIPTION = "description"
 const val KEY_TIME = "time"
 
-
-class RecyclerViewFragment : Fragment(), ItemsListener {
+@AndroidEntryPoint
+class ItemsFragment : Fragment(), ItemsListener {
 
     private lateinit var itemsAdapter: ItemsAdapter
     private val viewModel: ItemsViewModel by viewModels{

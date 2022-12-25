@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentLoginBinding
+import com.example.android_homework.presentation.view.utils.Navigator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _viewBinding: FragmentLoginBinding? = null
@@ -37,7 +40,7 @@ class LoginFragment : Fragment() {
         }
 
         viewModel.recV.observe(viewLifecycleOwner){
-            Navigator.add(parentFragmentManager,RecyclerViewFragment(), true)
+            Navigator.add(parentFragmentManager, ItemsFragment(), true)
         }
 
         viewModel.reg.observe(viewLifecycleOwner){
@@ -53,7 +56,10 @@ class LoginFragment : Fragment() {
         }
 
         viewBinding.btnLogin.setOnClickListener{
-            viewModel.loginButtonClick()
+            viewModel.loginUser(
+                viewBinding.etText.toString(),
+                viewBinding.etText2.toString()
+            )
         }
 
     }

@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.android_homework.databinding.FragmentDetailsBinding
+import com.example.android_homework.presentation.view.utils.Navigator
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     private var _viewBinding: FragmentDetailsBinding? = null
@@ -27,8 +29,6 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.details.observe(viewLifecycleOwner) {
-
             val bundle = arguments
             bundle?.let {
                 val title = bundle.getString(KEY_TITLE)
@@ -41,7 +41,14 @@ class DetailsFragment : Fragment() {
                 viewBinding.detailsTime.text = time
                 viewBinding.detailsImageTitle.setBackgroundResource(imageTitle)
             }
-        }
-        viewModel.showDetails()
+                viewBinding.btnLogout.setOnClickListener {
+                    viewModel.logoutUser()
+                }
+
+                viewModel.details.observe(viewLifecycleOwner){
+                Navigator.replace(parentFragmentManager, LoginFragment(), false)
+                }
+
+
     }
 }
