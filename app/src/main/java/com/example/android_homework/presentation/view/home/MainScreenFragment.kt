@@ -22,7 +22,6 @@ class MainScreenFragment : Fragment(), MainScreenView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_main_screen, container, false)
     }
 
