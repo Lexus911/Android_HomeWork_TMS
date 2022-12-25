@@ -7,6 +7,7 @@ import com.example.android_homework.presentation.view.auth.LoginPresenter
 import com.example.android_homework.presentation.view.auth.RegistrationPresenter
 import com.example.android_homework.presentation.view.home.DetailsPresenter
 import com.example.android_homework.presentation.view.home.ItemsPresenter
+import com.example.android_homework.presentation.view.home.MainScreenPresenter
 import com.example.android_homework.presentation.view.home.NestedPresenter
 import dagger.Module
 import dagger.Provides
@@ -47,4 +48,8 @@ class PresentationModule {
         return NestedPresenter()
     }
 
+    @Provides
+    fun provideMainScreenPresenter(authInteractor: AuthInteractor): MainScreenPresenter {
+        return MainScreenPresenter(authInteractor)
+    }
 }

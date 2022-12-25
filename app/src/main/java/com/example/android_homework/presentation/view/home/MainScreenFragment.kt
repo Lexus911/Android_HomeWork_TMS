@@ -8,11 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.android_homework.R
+import com.example.android_homework.presentation.model.UserModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainScreenFragment : Fragment(), MainScreenView {
 
+    @Inject
+    lateinit var mainScreenPresenter: MainScreenPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +28,10 @@ class MainScreenFragment : Fragment(), MainScreenView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mainScreenPresenter.setView(this)
+
+        mainScreenPresenter.getUserName()
 
         parentFragmentManager
             .beginTransaction()
@@ -42,5 +50,9 @@ class MainScreenFragment : Fragment(), MainScreenView {
             }
 
         dialog.show()
+    }
+
+    override fun getUserName(userName: UserModel) {
+        TODO("Not yet implemented")
     }
 }
