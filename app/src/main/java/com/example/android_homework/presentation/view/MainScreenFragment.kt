@@ -52,6 +52,5 @@ class MainScreenFragment : Fragment() {
             }
         dialog.show()
     }
-
     }
 }
