@@ -16,14 +16,16 @@ class LoginPresenter @Inject constructor(private val authInteractor: AuthInterac
         loginView.userLoggedIn()
     }
 
-    fun goToRegistration(){
-        loginView.goToRegistration()
-    }
 
     fun goToRecyclerView(){
         loginView.goToRecyclerView()
     }
 
+    fun goToRegistration(){
+        val isButtonPushed = authInteractor.checkButtonPush()
+        loginView.buttonPushResult(isButtonPushed)
+        authInteractor.buttonPressed()
+    }
 
 
 }

@@ -28,10 +28,20 @@ class SharedPreferencesHelper @Inject constructor(private val sharedPreferences:
     fun removeUser(){
         saveUserName(null)
         saveUserPassword(null)
+        sharedPreferences.edit().putBoolean(BUTTON_PRESSED, false).apply()
+    }
+
+    fun buttonPressed(){
+        sharedPreferences.edit().putBoolean(BUTTON_PRESSED, true).apply()
+    }
+
+    fun checkButtonPush(): Boolean {
+        return sharedPreferences.getBoolean(BUTTON_PRESSED, false)
     }
 
     companion object{
         private const val USER_NAME = "USER_NAME"
         private const val USER_PASSWORD = "USER_PASSWORD"
+        private const val BUTTON_PRESSED = "BUTTON_PRESSED"
     }
 }

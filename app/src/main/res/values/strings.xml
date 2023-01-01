@@ -33,5 +33,6 @@
     <string name="cancel">Cancel</string>
     <string name="welcome">Welcome to WeWillRockYou.com\nWe are glad to see you with us</string>
     <string name="logout">Logout</string>
+    <string name="seen_screen">Sorry, but you\'ve already seen this screen</string>
 
 </resources>

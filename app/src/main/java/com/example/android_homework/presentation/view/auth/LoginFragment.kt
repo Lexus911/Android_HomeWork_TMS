@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentLoginBinding
 import com.example.android_homework.presentation.view.home.ItemsFragment
@@ -37,12 +38,13 @@ class LoginFragment : Fragment(), LoginView {
 
         loginPresenter.setView(this)
 
+
         viewBinding.btnRecyclerView.setOnClickListener{
             loginPresenter.goToRecyclerView()
         }
 
         viewBinding.btnRegistration.setOnClickListener{
-           loginPresenter.goToRegistration()
+            loginPresenter.goToRegistration()
         }
 
         viewBinding.btnLogin.setOnClickListener{
@@ -68,20 +70,25 @@ class LoginFragment : Fragment(), LoginView {
             .commit()
     }
 
-    override fun goToRegistration() {
-        parentFragmentManager
-            .beginTransaction()
-            .add(R.id.activity_container, RegistrationFragment())
-            .addToBackStack(BackstackLogin)
-            .commit()
-    }
-
     override fun goToRecyclerView() {
         parentFragmentManager
             .beginTransaction()
             .replace(R.id.activity_container, ItemsFragment())
             .addToBackStack(BackstackLogin)
             .commit()
+    }
+
+    override fun buttonPushResult(buttonPush: Boolean) {
+        when(buttonPush){
+             true ->
+                 Toast.makeText(requireContext(), getString(R.string.seen_screen), Toast.LENGTH_SHORT).show()
+            false ->{
+                parentFragmentManager
+                .beginTransaction()
+                .add(R.id.activity_container, RegistrationFragment())
+                .addToBackStack(BackstackLogin)
+                .commit()}
+        }
     }
 }
 

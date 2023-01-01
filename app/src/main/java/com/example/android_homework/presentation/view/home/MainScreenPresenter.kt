@@ -10,8 +10,9 @@ class MainScreenPresenter @Inject constructor(private val authInteractor: AuthIn
         mainScreenView = mainScreenFragment
     }
 
-    fun getUserName(){
-        val userName = authInteractor.getUserCreds()
-        mainScreenView.getUserName(userName)
+    fun showUserName(){
+        val userName = authInteractor.getUserCreds().userName
+        val userPassword = authInteractor.getUserCreds().userPassword
+            mainScreenView.getUserName(userName, userPassword)
     }
 }

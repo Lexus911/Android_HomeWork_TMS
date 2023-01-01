@@ -22,4 +22,12 @@ class AuthRepositoryImpl @Inject constructor(private val sharedPreferencesHelper
     override fun userLogout() {
         return sharedPreferencesHelper.removeUser()
     }
+
+    override fun buttonPressed() {
+        return sharedPreferencesHelper.buttonPressed()
+    }
+
+    override fun checkButtonPush(): Boolean {
+        return sharedPreferencesHelper.checkButtonPush()
+    }
 }

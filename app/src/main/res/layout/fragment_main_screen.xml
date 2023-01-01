@@ -9,6 +9,7 @@
     android:background="@drawable/background_main_screen">
 
     <TextView
+        android:id="@+id/tv_mainscreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/main_screen"
