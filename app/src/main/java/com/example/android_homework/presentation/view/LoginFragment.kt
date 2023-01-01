@@ -57,8 +57,8 @@ class LoginFragment : Fragment() {
 
         viewBinding.btnLogin.setOnClickListener{
             viewModel.loginUser(
-                viewBinding.etText.toString(),
-                viewBinding.etText2.toString()
+                viewBinding.etText.text.toString(),
+                viewBinding.etText2.text.toString()
             )
         }
 

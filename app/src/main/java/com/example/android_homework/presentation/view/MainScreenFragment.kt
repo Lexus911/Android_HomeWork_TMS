@@ -9,18 +9,22 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.example.android_homework.R
+import com.example.android_homework.databinding.FragmentMainScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainScreenFragment : Fragment() {
+    private var _viewBinding: FragmentMainScreenBinding? = null
+    private val viewBinding get() = _viewBinding!!
 
     private val viewModel: MainScreenViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main_screen, container, false)
+    ): View {
+        _viewBinding = FragmentMainScreenBinding.inflate(inflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,10 +35,12 @@ class MainScreenFragment : Fragment() {
             .add(R.id.fragment_container, NestedFragment())
             .commit()
 
+        viewModel.showDialog()
+
     viewModel.dialog.observe(viewLifecycleOwner) {
 
         val dialog = AlertDialog.Builder(requireContext())
-            .setTitle(getString(R.string.congratulations))
+            .setTitle(getString(R.string.congratulations) + " ${it.userName} ${it.userPassword}" )
             .setMessage(getString(R.string.welcome))
             .setCancelable(false)
             .setPositiveButton(getString(R.string.ok)) { _, _ ->
@@ -44,9 +50,8 @@ class MainScreenFragment : Fragment() {
             .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                 dialog.cancel()
             }
-
         dialog.show()
     }
-        viewModel.showDialog()
+
     }
 }
