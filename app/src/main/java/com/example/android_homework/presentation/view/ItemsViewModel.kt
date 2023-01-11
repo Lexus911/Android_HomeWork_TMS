@@ -1,12 +1,15 @@
 package com.example.android_homework.presentation.view
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.android_homework.domain.items.ItemsInteractor
 import com.example.android_homework.presentation.model.ItemsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,8 +24,16 @@ class ItemsViewModel @Inject constructor(
         val bundle: LiveData<NavigateWithBundle?> = _bundle
 
         fun getData() {
-            val listItems = itemsInteractor.getData()
-            _items.value = listItems
+            viewModelScope.launch {
+                try {
+                    val listItems = itemsInteractor.getData()
+                    _items.value = listItems
+                }
+                catch (e: Exception){
+                    Log.w("exception","getData FAILED")
+                }
+            }
+
         }
         fun elementClicked(imageTitle: Int, title: String, description: String, time: String){
             _bundle.value = NavigateWithBundle(imageTitle, title, description, time)
