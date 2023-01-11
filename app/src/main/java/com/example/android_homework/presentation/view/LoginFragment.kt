@@ -39,20 +39,12 @@ class LoginFragment : Fragment() {
             }
         }
 
-        viewModel.recV.observe(viewLifecycleOwner){
+        viewBinding.btnRecyclerView.setOnClickListener{
             Navigator.add(parentFragmentManager, ItemsFragment(), true)
         }
 
-        viewModel.reg.observe(viewLifecycleOwner){
-            Navigator.add(parentFragmentManager,RegistrationFragment(), true)
-        }
-
-        viewBinding.btnRecyclerView.setOnClickListener{
-            viewModel.recyclerViewButtonClick()
-        }
-
         viewBinding.btnRegistration.setOnClickListener{
-            viewModel.registrationButtonClick()
+            Navigator.add(parentFragmentManager,RegistrationFragment(), true)
         }
 
         viewBinding.btnLogin.setOnClickListener{
