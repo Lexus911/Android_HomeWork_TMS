@@ -38,7 +38,6 @@ class LoginFragment : Fragment(), LoginView {
 
         loginPresenter.setView(this)
 
-
         viewBinding.btnRecyclerView.setOnClickListener{
             loginPresenter.goToRecyclerView()
         }

@@ -6,28 +6,28 @@ import com.example.android_homework.presentation.model.UserModel
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(private val sharedPreferencesHelper: SharedPreferencesHelper): AuthRepository {
-    override fun loginUser(userName: String, userPassword: String) {
+    override suspend fun loginUser(userName: String, userPassword: String) {
         sharedPreferencesHelper.saveUserName(userName)
         sharedPreferencesHelper.saveUserPassword(userPassword)
     }
 
-    override fun showUserCreds(): UserModel {
+    override suspend fun showUserCreds(): UserModel {
         return sharedPreferencesHelper.getUserCreds()
     }
 
-    override fun doesUserExist(): Boolean {
+    override suspend fun doesUserExist(): Boolean {
         return sharedPreferencesHelper.checkUserExists()
     }
 
-    override fun userLogout() {
+    override suspend fun userLogout() {
         return sharedPreferencesHelper.removeUser()
     }
 
-    override fun buttonPressed() {
+    override suspend fun buttonPressed() {
         return sharedPreferencesHelper.buttonPressed()
     }
 
-    override fun checkButtonPush(): Boolean {
+    override suspend fun checkButtonPush(): Boolean {
         return sharedPreferencesHelper.checkButtonPush()
     }
 }
