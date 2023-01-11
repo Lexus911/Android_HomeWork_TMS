@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.android_homework.domain.items.ItemsInteractor
 import com.example.android_homework.presentation.model.ItemsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
