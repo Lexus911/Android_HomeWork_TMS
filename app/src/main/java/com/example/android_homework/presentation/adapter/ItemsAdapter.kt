@@ -12,7 +12,9 @@ class ItemsAdapter(private var itemsListener: ItemsListener): RecyclerView.Adapt
     private var listItems = listOf<ItemsModel>()
 
     fun submitList(list: List<ItemsModel>){
+//        listItems.clear()
         this.listItems = list
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
