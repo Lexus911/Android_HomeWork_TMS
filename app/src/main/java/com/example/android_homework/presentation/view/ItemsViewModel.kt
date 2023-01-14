@@ -6,10 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android_homework.R
 import com.example.android_homework.domain.items.ItemsInteractor
 import com.example.android_homework.presentation.model.ItemsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -37,7 +37,8 @@ class ItemsViewModel @Inject constructor(
 
         }
         fun elementClicked(imageTitle: Int, title: String, description: String, time: String){
-            _bundle.value = NavigateWithBundle(imageTitle, title, description, time)
+            _bundle.value = NavigateWithBundle(imageTitle, title, description, time,
+                destinationId = R.id.action_itemsFragment_to_detailsFragment)
         }
 
         fun userNavigated(){
@@ -50,4 +51,5 @@ data class NavigateWithBundle(
     val title: String,
     val description: String,
     val time: String,
+    val destinationId: Int
     )

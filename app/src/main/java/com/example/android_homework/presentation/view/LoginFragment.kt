@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentLoginBinding
-import com.example.android_homework.presentation.view.utils.Navigator
+import com.example.android_homework.presentation.view.utils.Navigator.navigate
+import com.example.android_homework.presentation.view.utils.Navigator.setGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,16 +36,33 @@ class LoginFragment : Fragment() {
             } else if (viewBinding.etText2.text.toString().isEmpty()) {
                 viewBinding.etText2.error = getString(R.string.error_field_password)
             } else {
-                Navigator.replace(parentFragmentManager,MainScreenFragment(),false)
+                if(it != null) {
+                    setGraph(it)
+                }
             }
         }
 
+        viewModel.recV.observe(viewLifecycleOwner){
+            if(it != null) {
+                navigate(it)
+                viewModel.userNavigatedRecV()
+            }
+        }
+
+        viewModel.reg.observe(viewLifecycleOwner){
+            if(it != null) {
+                navigate(it)
+                viewModel.userNavigatedReg()
+            }
+
+        }
+
         viewBinding.btnRecyclerView.setOnClickListener{
-            Navigator.add(parentFragmentManager, ItemsFragment(), true)
+            viewModel.toRecyclerView()
         }
 
         viewBinding.btnRegistration.setOnClickListener{
-            Navigator.add(parentFragmentManager,RegistrationFragment(), true)
+            viewModel.toRegistration()
         }
 
         viewBinding.btnLogin.setOnClickListener{

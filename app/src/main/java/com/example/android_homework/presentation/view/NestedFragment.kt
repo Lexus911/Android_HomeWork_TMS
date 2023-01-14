@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.android_homework.databinding.FragmentNestedBinding
-import com.example.android_homework.presentation.view.utils.Navigator
 
 
 
@@ -29,7 +29,9 @@ class NestedFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.nav.observe(viewLifecycleOwner) {
-            Navigator.replace(parentFragmentManager,LoginFragment(),false)
+            if(it != null) {
+                findNavController().setGraph(it)
+            }
         }
 
         viewBinding.btnBackToLogin.setOnClickListener {

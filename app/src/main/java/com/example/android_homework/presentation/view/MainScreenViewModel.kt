@@ -24,8 +24,8 @@ class MainScreenViewModel @Inject constructor(private val authInteractor: AuthIn
             }catch (e: Exception){
                 Log.w("exception","Login from main screen FAILED")
             }
-
         }
     }
+
 
 }

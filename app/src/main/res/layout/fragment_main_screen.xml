@@ -12,28 +12,33 @@
         android:id="@+id/tv_mainscreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:gravity="center_horizontal|center_vertical"
         android:text="@string/main_screen"
         android:textColor="@color/white"
         android:textSize="33sp"
         android:textStyle="bold"
-        android:gravity="center_horizontal|center_vertical"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_container"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023">
 
     </TextView>
 
     <androidx.fragment.app.FragmentContainerView
-        android:layout_marginTop="400dp"
-        android:id="@+id/fragment_container"
+        android:id="@+id/fragmentContainerView2"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
+        android:layout_marginTop="400dp"
         android:layout_height="match_parent"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tv_mainscreen"
+        app:navGraph="@navigation/nested_graph" />
 
-    </androidx.fragment.app.FragmentContainerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

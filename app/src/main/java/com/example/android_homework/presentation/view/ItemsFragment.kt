@@ -12,7 +12,7 @@ import com.example.android_homework.databinding.FragmentRecyclerViewBinding
 import com.example.android_homework.domain.items.ItemsInteractor
 
 import com.example.android_homework.presentation.adapter.listener.ItemsListener
-import com.example.android_homework.presentation.view.utils.Navigator
+import com.example.android_homework.presentation.view.utils.Navigator.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 
 const val KEY_IMAGE_TITLE = "imageTitle"
@@ -59,7 +59,6 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewModel.bundle.observe(viewLifecycleOwner){ navBundle ->
 
             if(navBundle != null) {
-                val detailsFragment = DetailsFragment()
                 val bundle = Bundle()
 
                 bundle.putInt(KEY_IMAGE_TITLE, navBundle.imageTitle)
@@ -67,9 +66,8 @@ class ItemsFragment : Fragment(), ItemsListener {
                 bundle.putString(KEY_DESCRIPTION, navBundle.description)
                 bundle.putString(KEY_TIME, navBundle.time)
 
-                detailsFragment.arguments = bundle
+                navigateWithBundle(navBundle.destinationId, bundle)
 
-                Navigator.replace(parentFragmentManager,detailsFragment,true)
                 viewModel.userNavigated()
             }
         }

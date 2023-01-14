@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.android_homework.databinding.FragmentDetailsBinding
-import com.example.android_homework.presentation.view.utils.Navigator
+import com.example.android_homework.presentation.view.utils.Navigator.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,7 +46,7 @@ class DetailsFragment : Fragment() {
                 }
 
                 viewModel.details.observe(viewLifecycleOwner){
-                Navigator.replace(parentFragmentManager, LoginFragment(), false)
+                    navigate(it ?: 0)
                 }
 
 

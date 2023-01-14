@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentMainScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,6 +19,8 @@ class MainScreenFragment : Fragment() {
     private val viewBinding get() = _viewBinding!!
 
     private val viewModel: MainScreenViewModel by viewModels()
+
+    lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,10 +33,11 @@ class MainScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        parentFragmentManager
-            .beginTransaction()
-            .add(R.id.fragment_container, NestedFragment())
-            .commit()
+//        val navNestFragment = childFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment
+//        navController = navNestFragment.navController
+//        navController.setGraph(R.navigation.nested_graph)
+
+
 
         viewModel.showDialog()
 

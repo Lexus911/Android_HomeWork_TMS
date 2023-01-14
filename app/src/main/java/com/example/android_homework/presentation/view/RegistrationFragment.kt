@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentRegistrationBinding
-import com.example.android_homework.presentation.view.utils.Navigator
+import com.example.android_homework.presentation.view.utils.Navigator.setGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,7 +43,9 @@ class RegistrationFragment : Fragment() {
             } else if (viewBinding.etText4.text.toString().isEmpty()) {
                 viewBinding.etText4.error = getString(R.string.error_field_password)
             } else {
-                Navigator.replace(parentFragmentManager,MainScreenFragment(),false)
+                if(it != null) {
+                    setGraph(it)
+                }
             }
         }
 
