@@ -37,8 +37,6 @@ class MainScreenFragment : Fragment() {
 //        navController = navNestFragment.navController
 //        navController.setGraph(R.navigation.nested_graph)
 
-
-
         viewModel.showDialog()
 
     viewModel.dialog.observe(viewLifecycleOwner) {

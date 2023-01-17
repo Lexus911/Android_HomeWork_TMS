@@ -54,7 +54,6 @@ class LoginFragment : Fragment() {
                 navigate(it)
                 viewModel.userNavigatedReg()
             }
-
         }
 
         viewBinding.btnRecyclerView.setOnClickListener{
