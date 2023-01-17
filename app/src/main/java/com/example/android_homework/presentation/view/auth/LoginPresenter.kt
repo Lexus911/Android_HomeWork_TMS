@@ -13,7 +13,7 @@ class LoginPresenter @Inject constructor(private val authInteractor: AuthInterac
     lateinit var loginView: LoginView
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler{ _, exception ->
-        Log.w("exceptionHandlerCalled", exception.toString())
+        Log.w("Login exceptionHandlerCalled", exception.toString())
     }
 
     fun setView(loginFragment: LoginFragment){
@@ -22,7 +22,7 @@ class LoginPresenter @Inject constructor(private val authInteractor: AuthInterac
 
     fun loginUser(userName: String, userPassword: String){
 
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
             try {
                 val job = launch {
                     authInteractor.loginUser(userName, userPassword)
@@ -42,7 +42,7 @@ class LoginPresenter @Inject constructor(private val authInteractor: AuthInterac
 
     fun goToRegistration(){
 
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
             try {
                 val job = launch {
                     val isButtonPushed = authInteractor.checkButtonPush()
@@ -55,8 +55,5 @@ class LoginPresenter @Inject constructor(private val authInteractor: AuthInterac
                 Log.w("exception","Go to registration FAILED")
             }
         }
-
     }
-
-
 }

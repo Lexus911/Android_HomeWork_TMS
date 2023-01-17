@@ -19,7 +19,7 @@ class MainPresenter @Inject constructor( private val authInteractor: AuthInterac
     }
 
     fun checkUserExists(){
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
             try {
                 val job = launch {
                     val doesUserExists = authInteractor.checkUseerExists()

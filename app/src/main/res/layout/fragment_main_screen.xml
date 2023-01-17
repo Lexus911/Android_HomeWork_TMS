@@ -12,28 +12,35 @@
         android:id="@+id/tv_mainscreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
         android:text="@string/main_screen"
         android:textColor="@color/white"
         android:textSize="33sp"
         android:textStyle="bold"
-        android:gravity="center_horizontal|center_vertical"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_container"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.276">
 
     </TextView>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:layout_marginTop="400dp"
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_BackToLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_700"
+        android:gravity="center_horizontal"
+        android:paddingVertical="10dp"
+        android:text="@string/back_to_login"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.fragment.app.FragmentContainerView>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.638" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

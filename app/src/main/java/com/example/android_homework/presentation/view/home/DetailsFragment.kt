@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentDetailsBinding
-import com.example.android_homework.presentation.view.auth.LoginFragment
+import com.example.android_homework.utils.NavHelper.navigate
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -49,9 +49,7 @@ class DetailsFragment : Fragment(), DetailsView {
     }
 
     override fun userLoggedOut() {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.activity_container, LoginFragment())
-            .commit()
+        navigate(R.id.action_detailsFragment_to_loginFragment)
     }
 
     override fun displayDetails(title: String, description: String, time: String, imageTitle: Int) {

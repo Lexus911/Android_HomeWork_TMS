@@ -10,6 +10,7 @@ import com.example.android_homework.databinding.FragmentRecyclerViewBinding
 import com.example.android_homework.presentation.adapter.ItemsAdapter
 import com.example.android_homework.presentation.adapter.listener.ItemsListener
 import com.example.android_homework.presentation.model.ItemsModel
+import com.example.android_homework.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -17,7 +18,6 @@ const val KEY_IMAGE_TITLE = "imageTitle"
 const val KEY_TITLE = "title"
 const val KEY_DESCRIPTION = "description"
 const val KEY_TIME = "time"
-const val details = "details"
 
 @AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemsListener, ItemsView {
@@ -70,10 +70,7 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
         detailsFragment.arguments = bundle
 
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, detailsFragment)
-            .addToBackStack(details)
-            .commit()
+        navigateWithBundle(R.id.action_itemsFragment_to_detailsFragment, bundle)
+
     }
 }

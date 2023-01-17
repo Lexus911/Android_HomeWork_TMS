@@ -1,5 +1,6 @@
 package com.example.android_homework.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,8 +12,11 @@ class ItemsAdapter(private var itemsListener: ItemsListener): RecyclerView.Adapt
 
     private var listItems = listOf<ItemsModel>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun submitList(list: List<ItemsModel>){
+
         this.listItems = list
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {

@@ -8,14 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentLoginBinding
-import com.example.android_homework.presentation.view.home.ItemsFragment
-import com.example.android_homework.presentation.view.home.MainScreenFragment
+import com.example.android_homework.utils.NavHelper.navigate
+import com.example.android_homework.utils.NavHelper.setGraph
 
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-
-
-const val BackstackLogin = "login_screen"
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(), LoginView {
@@ -63,30 +60,19 @@ class LoginFragment : Fragment(), LoginView {
     }
 
     override fun userLoggedIn() {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, MainScreenFragment())
-            .commit()
+        setGraph(R.navigation.main_graph)
     }
 
     override fun goToRecyclerView() {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, ItemsFragment())
-            .addToBackStack(BackstackLogin)
-            .commit()
+        navigate(R.id.action_loginFragment_to_itemsFragment)
     }
 
     override fun buttonPushResult(buttonPush: Boolean) {
         when(buttonPush){
              true ->
                  Toast.makeText(requireContext(), getString(R.string.seen_screen), Toast.LENGTH_SHORT).show()
-            false ->{
-                parentFragmentManager
-                .beginTransaction()
-                .add(R.id.activity_container, RegistrationFragment())
-                .addToBackStack(BackstackLogin)
-                .commit()}
+            false ->
+                navigate(R.id.action_loginFragment_to_registrationFragment)
         }
     }
 }

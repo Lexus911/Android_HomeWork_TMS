@@ -13,7 +13,7 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
 
     private lateinit var itemsView: ItemsView
     private val coroutineExceptionHandler = CoroutineExceptionHandler{ _, exception ->
-        Log.w("exceptionHandlerCalled", exception.toString())
+        Log.w("Items exceptionHandlerCalled", exception.toString())
     }
 
     fun setView(context: ItemsView){
@@ -21,7 +21,7 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
     }
 
     fun getData(){
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
             try {
                 val job = launch {
                     val listItems = itemsInteractor.getData()

@@ -11,7 +11,7 @@ import javax.inject.Inject
 class DetailsPresenter @Inject constructor(private val authInteractor: AuthInteractor){
     private lateinit var detailsView: DetailsView
     private val coroutineExceptionHandler = CoroutineExceptionHandler{ _, exception ->
-        Log.w("exceptionHandlerCalled", exception.toString())
+        Log.w("Details exceptionHandlerCalled", exception.toString())
     }
 
     fun setView(detailsFragment: DetailsFragment){
@@ -33,7 +33,7 @@ class DetailsPresenter @Inject constructor(private val authInteractor: AuthInter
     }
 
     fun logoutUser(){
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
             try {
                 val job = launch {
                     authInteractor.logoutUser()
@@ -46,5 +46,4 @@ class DetailsPresenter @Inject constructor(private val authInteractor: AuthInter
             }
         }
     }
-
 }

@@ -1,6 +1,7 @@
 package com.example.android_homework.presentation.view.home
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentMainScreenBinding
+import com.example.android_homework.utils.NavHelper.setGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -35,12 +37,11 @@ class MainScreenFragment : Fragment(), MainScreenView {
 
         mainScreenPresenter.setView(this)
 
-        parentFragmentManager
-            .beginTransaction()
-            .add(R.id.fragment_container, NestedFragment())
-            .commit()
-
         mainScreenPresenter.showUserName()
+
+        viewBinding.btnBackToLogin.setOnClickListener {
+            mainScreenPresenter.backToLogin()
+        }
 
         val  dialog = AlertDialog.Builder(requireContext())
             .setTitle(getString(R.string.congratulations))
@@ -56,11 +57,14 @@ class MainScreenFragment : Fragment(), MainScreenView {
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun getUserName(userName: String, userPassword: String) {
         viewBinding.tvMainscreen.text = "${userName}\n${userPassword}"
     }
 
-
+    override fun backToLogin() {
+        setGraph(R.navigation.auth_graph)
+    }
 
 
 }

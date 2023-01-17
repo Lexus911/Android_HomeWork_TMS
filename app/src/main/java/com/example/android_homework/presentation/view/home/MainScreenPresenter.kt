@@ -20,7 +20,7 @@ class MainScreenPresenter @Inject constructor(private val authInteractor: AuthIn
     }
 
     fun showUserName(){
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
             try {
                 val job = launch {
                     val userName = authInteractor.getUserCreds().userName
@@ -33,6 +33,9 @@ class MainScreenPresenter @Inject constructor(private val authInteractor: AuthIn
                 Log.w("exception","Show user FAILED")
             }
         }
+    }
 
+    fun backToLogin(){
+        mainScreenView.backToLogin()
     }
 }

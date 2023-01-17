@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentRegistrationBinding
-import com.example.android_homework.presentation.view.home.MainScreenFragment
+import com.example.android_homework.utils.NavHelper.setGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -52,10 +52,7 @@ class RegistrationFragment : Fragment(), RegistrationView {
     }
 
     override fun registerUser() {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, MainScreenFragment())
-            .commit()
+        setGraph(R.navigation.main_graph)
     }
 
 }
