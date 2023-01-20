@@ -36,7 +36,7 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
 
     }
 
-    fun elementSelected(imageTitle: Int, title: String, description: String, time: String){
-        itemsView.goToDetails(imageTitle, title, description, time)
+    fun elementSelected(name: String, username: String, email: String){
+        itemsView.goToDetails(name, username, email)
     }
 }

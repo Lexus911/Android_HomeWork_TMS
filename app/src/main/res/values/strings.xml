@@ -34,5 +34,16 @@
     <string name="welcome">Welcome to WeWillRockYou.com\nWe are glad to see you with us</string>
     <string name="logout">Logout</string>
     <string name="seen_screen">Sorry, but you\'ve already seen this screen</string>
+    <string name="name">Name</string>
+    <string name="username_items">Username</string>
+    <string name="address">Address</string>
+    <string name="zipcode">Zipcode</string>
+    <string name="geo">Geo</string>
+    <string name="phone">Phone</string>
+    <string name="website">Website</string>
+    <string name="company">Company</string>
+    <string name="e_mail_items">E-mail</string>
+    <string name="catchphrase">catchPhrase</string>
+    <string name="business">Business</string>
 
 </resources>

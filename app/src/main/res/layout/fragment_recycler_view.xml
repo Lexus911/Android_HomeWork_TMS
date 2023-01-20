@@ -6,7 +6,7 @@
     android:background="@drawable/double_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.RecyclerViewFragment">
+    tools:context=".presentation.view.home.ItemsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

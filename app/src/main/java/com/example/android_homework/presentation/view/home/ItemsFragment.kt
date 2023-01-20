@@ -50,27 +50,27 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
     }
 
-    override fun onElementSelected(imageTitle: Int, title: String, description: String, time: String) {
-        itemsPresenter.elementSelected(imageTitle,title,description,time)
+    override fun onElementSelected(name: String, username: String, email: String) {
+        itemsPresenter.elementSelected(name, username, email)
     }
-
 
     override fun dataReceived(list: List<ItemsModel>) {
         itemsAdapter.submitList(list)
     }
 
-    override fun goToDetails(imageTitle: Int, title: String, description: String, time: String) {
+    override fun goToDetails(name: String, username: String, email: String) {
         val detailsFragment = DetailsFragment()
         val bundle = Bundle()
 
-        bundle.putInt(KEY_IMAGE_TITLE, imageTitle)
-        bundle.putString(KEY_TITLE, title)
-        bundle.putString(KEY_DESCRIPTION, description)
-        bundle.putString(KEY_TIME, time)
+
+        bundle.putString(KEY_TITLE, name)
+        bundle.putString(KEY_DESCRIPTION, username)
+        bundle.putString(KEY_TIME, email)
 
         detailsFragment.arguments = bundle
 
         navigateWithBundle(R.id.action_itemsFragment_to_detailsFragment, bundle)
 
     }
+
 }
