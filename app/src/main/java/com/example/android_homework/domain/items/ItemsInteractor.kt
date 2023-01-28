@@ -1,5 +1,6 @@
 package com.example.android_homework.domain.items
 
+import com.example.android_homework.presentation.model.FavoritesModel
 import com.example.android_homework.presentation.model.ItemsModel
 import javax.inject.Inject
 
@@ -11,5 +12,26 @@ class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepo
 
     suspend fun showData(): List<ItemsModel>{
         return itemsRepository.showData()
+    }
+
+    suspend fun deleteItemById(id: Int){
+        itemsRepository.deleteItemById(id)
+    }
+
+    suspend fun deleteFavItemById(id:Int){
+        itemsRepository.deleteFavById(id)
+    }
+
+    suspend fun findItem(searchId: Int): ItemsModel{
+        return itemsRepository.findItemById(searchId)
+    }
+
+    suspend fun onFavClicked(id: Int){
+        val foundItem = itemsRepository.findItemById(id)
+        itemsRepository.favClicked(foundItem)
+    }
+
+    suspend fun getFavorites(): List<FavoritesModel>{
+        return itemsRepository.getFavorites()
     }
 }

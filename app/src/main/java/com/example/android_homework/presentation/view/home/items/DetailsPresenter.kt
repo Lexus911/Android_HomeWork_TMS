@@ -1,4 +1,4 @@
-package com.example.android_homework.presentation.view.home
+package com.example.android_homework.presentation.view.home.items
 
 import android.util.Log
 import com.example.android_homework.domain.auth.AuthInteractor

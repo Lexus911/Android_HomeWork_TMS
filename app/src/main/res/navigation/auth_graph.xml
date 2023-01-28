@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_loginFragment_to_itemsFragment"
             app:destination="@id/itemsFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -24,7 +27,7 @@
         tools:layout="@layout/fragment_registration" />
     <fragment
         android:id="@+id/itemsFragment"
-        android:name="com.example.android_homework.presentation.view.home.ItemsFragment"
+        android:name="com.example.android_homework.presentation.view.home.items.ItemsFragment"
         android:label="ItemsFragment" >
         <action
             android:id="@+id/action_itemsFragment_to_detailsFragment"
@@ -32,11 +35,15 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.android_homework.presentation.view.home.DetailsFragment"
+        android:name="com.example.android_homework.presentation.view.home.items.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
         <action
             android:id="@+id/action_detailsFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.android_homework.presentation.view.home.items.FavoritesFragment"
+        android:label="FavoritesFragment" />
 </navigation>

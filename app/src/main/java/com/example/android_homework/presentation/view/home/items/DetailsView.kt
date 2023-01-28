@@ -1,4 +1,4 @@
-package com.example.android_homework.presentation.view.home
+package com.example.android_homework.presentation.view.home.items
 
 interface DetailsView {
 

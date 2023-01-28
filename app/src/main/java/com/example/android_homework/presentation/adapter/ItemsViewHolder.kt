@@ -28,5 +28,13 @@ class ItemsViewHolder(private val viewBinding: ItemsSongsBinding,
         itemView.setOnClickListener{
             itemsListener.onElementSelected( itemsModel.name, itemsModel.username, itemsModel.email)
         }
+
+        viewBinding.btnFav.setOnClickListener{
+            itemsListener.onFavClicked(itemsModel.id)
+        }
+
+        viewBinding.ivDelete.setOnClickListener{
+            itemsListener.onDeleteClicked(itemsModel.id)
+        }
     }
 }

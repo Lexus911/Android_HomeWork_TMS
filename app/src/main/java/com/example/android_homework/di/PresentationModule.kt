@@ -5,8 +5,8 @@ import com.example.android_homework.domain.items.ItemsInteractor
 import com.example.android_homework.presentation.view.MainPresenter
 import com.example.android_homework.presentation.view.auth.LoginPresenter
 import com.example.android_homework.presentation.view.auth.RegistrationPresenter
-import com.example.android_homework.presentation.view.home.DetailsPresenter
-import com.example.android_homework.presentation.view.home.ItemsPresenter
+import com.example.android_homework.presentation.view.home.items.DetailsPresenter
+import com.example.android_homework.presentation.view.home.items.ItemsPresenter
 import com.example.android_homework.presentation.view.home.MainScreenPresenter
 import com.example.android_homework.presentation.view.home.NestedPresenter
 import dagger.Module

@@ -45,5 +45,10 @@
     <string name="e_mail_items">E-mail</string>
     <string name="catchphrase">catchPhrase</string>
     <string name="business">Business</string>
+    <string name="favorites_fragment">Favorites Fragment</string>
+    <string name="items_fragment">Items Fragment</string>
+    <string name="registration_bottom_nav">Registration</string>
+    <string name="favorites_bottom_nav">Favorites</string>
+    <string name="recyclerview_bottom_nav">RecyclerView</string>
 
 </resources>

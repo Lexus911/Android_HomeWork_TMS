@@ -1,10 +1,12 @@
 package com.example.android_homework.data.items
 
 
+import com.example.android_homework.data.database.FavoritesEntity
 import com.example.android_homework.data.database.ItemsEntity
 import com.example.android_homework.data.database.dao.ItemsDAO
 import com.example.android_homework.data.service.ApiService
 import com.example.android_homework.domain.items.ItemsRepository
+import com.example.android_homework.presentation.model.FavoritesModel
 import com.example.android_homework.presentation.model.ItemsModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -68,6 +70,87 @@ class ItemsRepositoryImpl @Inject constructor(
                     it.lat,
                     it.lng
                 )
+            }
+        }
+    }
+
+    override suspend fun favClicked(itemsModel: ItemsModel) {
+        return withContext(Dispatchers.IO) {
+            itemsDAO.insertFavoritesEntity(
+                FavoritesEntity(
+                    itemsModel.id,
+                    itemsModel.name,
+                    itemsModel.username,
+                    itemsModel.email,
+                    itemsModel.phone,
+                    itemsModel.website,
+                    itemsModel.street,
+                    itemsModel.suite,
+                    itemsModel.city,
+                    itemsModel.zipcode,
+                    itemsModel.nameCompany,
+                    itemsModel.catchPhrase,
+                    itemsModel.bs,
+                    itemsModel.lat,
+                    itemsModel.lng)
+            )
+        }
+    }
+
+    override suspend fun deleteItemById(id: Int) {
+        withContext(Dispatchers.IO) {
+            itemsDAO.deleteItemEntityById(id)
+        }
+    }
+
+    override suspend fun deleteFavById(id: Int) {
+        withContext(Dispatchers.IO) {
+            itemsDAO.deleteFavEntityById(id)
+        }
+    }
+
+    override suspend fun findItemById(id: Int): ItemsModel {
+        return withContext(Dispatchers.IO) {
+            val itemsEntity = itemsDAO.findItemEntityById(id)
+            ItemsModel(
+                itemsEntity.id,
+                itemsEntity.name,
+                itemsEntity.username,
+                itemsEntity.email,
+                itemsEntity.phone,
+                itemsEntity.website,
+                itemsEntity.street,
+                itemsEntity.suite,
+                itemsEntity.city,
+                itemsEntity.zipcode,
+                itemsEntity.nameCompany,
+                itemsEntity.catchPhrase,
+                itemsEntity.bs,
+                itemsEntity.lat,
+                itemsEntity.lng)
+        }
+    }
+
+    override suspend fun getFavorites(): List<FavoritesModel> {
+        return withContext(Dispatchers.IO) {
+            val favoritesEntity = itemsDAO.getFavoritesEntities()
+            favoritesEntity.map{
+                FavoritesModel(
+                    it.id,
+                    it.name,
+                    it.username,
+                    it.email,
+                    it.phone,
+                    it.website,
+                    it.street,
+                    it.suite,
+                    it.city,
+                    it.zipcode,
+                    it.nameCompany,
+                    it.catchPhrase,
+                    it.bs,
+                    it.lat,
+                    it.lng)
             }
         }
     }

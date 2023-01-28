@@ -8,17 +8,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainPresenter @Inject constructor( private val authInteractor: AuthInteractor){
+class MainPresenter @Inject constructor(private val authInteractor: AuthInteractor) {
     private lateinit var mainView: MainView
-    private val coroutineExceptionHandler = CoroutineExceptionHandler{ _, exception ->
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
         Log.w("exceptionHandlerCalled", exception.toString())
     }
 
-    fun setView(mainActivity: MainActivity){
+    fun setView(mainActivity: MainActivity) {
         mainView = mainActivity
     }
 
-    fun checkUserExists(){
+    fun checkUserExists() {
         CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
             try {
                 val job = launch {
@@ -27,10 +27,9 @@ class MainPresenter @Inject constructor( private val authInteractor: AuthInterac
                 }
                 job.join()
                 job.cancel()
-            } catch (e: Exception){
-                Log.w("exception","Check user exist FAILED")
+            } catch (e: Exception) {
+                Log.w("exception", "Check user exist FAILED")
             }
         }
-
     }
 }

@@ -1,4 +1,4 @@
-package com.example.android_homework.presentation.view.home
+package com.example.android_homework.presentation.view.home.items
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -52,6 +52,14 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
     override fun onElementSelected(name: String, username: String, email: String) {
         itemsPresenter.elementSelected(name, username, email)
+    }
+
+    override fun onFavClicked(id: Int) {
+        itemsPresenter.onFavClicked(id)
+    }
+
+    override fun onDeleteClicked(id: Int) {
+        itemsPresenter.deleteItem(id)
     }
 
     override fun dataReceived(list: List<ItemsModel>) {

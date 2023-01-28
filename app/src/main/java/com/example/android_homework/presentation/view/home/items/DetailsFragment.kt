@@ -1,4 +1,4 @@
-package com.example.android_homework.presentation.view.home
+package com.example.android_homework.presentation.view.home.items
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

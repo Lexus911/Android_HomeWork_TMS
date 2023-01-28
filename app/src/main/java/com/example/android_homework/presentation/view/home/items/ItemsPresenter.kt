@@ -1,4 +1,4 @@
-package com.example.android_homework.presentation.view.home
+package com.example.android_homework.presentation.view.home.items
 
 import android.util.Log
 import com.example.android_homework.domain.items.ItemsInteractor
@@ -40,4 +40,35 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
     fun elementSelected(name: String, username: String, email: String){
         itemsView.goToDetails(name, username, email)
     }
+
+    fun onFavClicked(id: Int){
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
+            try {
+                val job = launch {
+                    itemsInteractor.onFavClicked(id)
+                }
+                job.join()
+                job.cancel()
+            } catch (e: Exception){
+                Log.w("exception","onFavClicked FAILED")
+            }
+        }
+
+    }
+
+    fun deleteItem(id: Int){
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
+            try {
+                val job = launch {
+                    itemsInteractor.deleteItemById(id)
+                }
+                job.join()
+                job.cancel()
+            } catch (e: Exception){
+                Log.w("exception","onFavClicked FAILED")
+            }
+        }
+
+    }
+
 }
