@@ -38,14 +38,7 @@ class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationC
 
         binding.bottomNavigation.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener{ _ , destination, _ ->
-
-            if(destination.id == R.id.loginFragment) {
-                binding.bottomNavigation.visibility = VISIBLE
-            } else {
-                binding.bottomNavigation.visibility = GONE
-            }
-        }
+        navController.addOnDestinationChangedListener(this)
     }
 
     override fun userExistsResult(userExists: Boolean) {
@@ -66,6 +59,10 @@ class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationC
         destination: NavDestination,
         arguments: Bundle?
     ) {
-
+        if(destination.id == R.id.loginFragment) {
+            binding.bottomNavigation.visibility = VISIBLE
+        } else {
+            binding.bottomNavigation.visibility = GONE
+        }
     }
 }
