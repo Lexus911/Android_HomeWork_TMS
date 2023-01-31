@@ -2,9 +2,12 @@ package com.example.android_homework.presentation.view.home.items
 
 import android.util.Log
 import com.example.android_homework.domain.items.ItemsInteractor
+import com.example.android_homework.presentation.model.ItemsModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,6 +19,8 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
         Log.w("Items exceptionHandlerCalled", exception.toString())
     }
 
+    val listItems = flow<Flow<List<ItemsModel>>>{ emit(itemsInteractor.showData()) }
+
     fun setView(context: ItemsView){
         itemsView = context
     }
@@ -25,8 +30,8 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
             try {
                 val job = launch {
                     itemsInteractor.getData()
-                    val listItems = itemsInteractor.showData()
-                    itemsView.dataReceived(listItems)
+
+//                    itemsView.dataReceived(listItems)
                 }
                 job.join()
                 job.cancel()
@@ -34,7 +39,6 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
                 Log.w("exception","getData FAILED")
             }
         }
-
     }
 
     fun elementSelected(name: String, username: String, email: String){
@@ -53,7 +57,6 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
                 Log.w("exception","onFavClicked FAILED")
             }
         }
-
     }
 
     fun deleteItem(id: Int){
@@ -68,7 +71,5 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
                 Log.w("exception","onFavClicked FAILED")
             }
         }
-
     }
-
 }

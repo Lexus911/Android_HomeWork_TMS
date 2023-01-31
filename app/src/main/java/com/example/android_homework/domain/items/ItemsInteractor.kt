@@ -2,6 +2,7 @@ package com.example.android_homework.domain.items
 
 import com.example.android_homework.presentation.model.FavoritesModel
 import com.example.android_homework.presentation.model.ItemsModel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepository) {
@@ -10,7 +11,7 @@ class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepo
         return itemsRepository.getData()
     }
 
-    suspend fun showData(): List<ItemsModel>{
+    suspend fun showData(): Flow<List<ItemsModel>> {
         return itemsRepository.showData()
     }
 
@@ -31,7 +32,7 @@ class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepo
         itemsRepository.favClicked(foundItem)
     }
 
-    suspend fun getFavorites(): List<FavoritesModel>{
+    suspend fun getFavorites(): Flow<List<FavoritesModel>>{
         return itemsRepository.getFavorites()
     }
 }

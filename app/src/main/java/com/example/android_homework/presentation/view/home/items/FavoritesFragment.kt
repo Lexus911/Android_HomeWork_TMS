@@ -5,12 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_homework.databinding.FragmentFavoritesBinding
 import com.example.android_homework.presentation.model.FavoritesModel
 import com.example.android_homework.presentation.view.home.items.adapter.FavoritesAdapter
 import com.example.android_homework.presentation.view.home.items.adapter.FavoritesListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.catch
 import javax.inject.Inject
 
 
@@ -43,8 +46,18 @@ class FavoritesFragment : Fragment(), FavoritesListener,FavoritesView {
         viewBinding.recyclerView.adapter = favAdapter
 
 
-        favoritesPresenter.getFavorites()
+//        favoritesPresenter.getFavorites()
 
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            favoritesPresenter.favoritesItems.catch {
+                Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
+            }
+                .collect{ flowList ->
+                    flowList.collect{ list ->
+                        favAdapter.submitList(list)
+                    }
+                }
+        }
     }
 
     override fun favReceived(list: List<FavoritesModel>) {

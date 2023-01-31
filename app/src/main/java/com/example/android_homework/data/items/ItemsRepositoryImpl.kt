@@ -9,6 +9,8 @@ import com.example.android_homework.domain.items.ItemsRepository
 import com.example.android_homework.presentation.model.FavoritesModel
 import com.example.android_homework.presentation.model.ItemsModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
@@ -21,55 +23,59 @@ class ItemsRepositoryImpl @Inject constructor(
 ): ItemsRepository {
     override suspend fun getData() {
         return withContext(Dispatchers.IO) {
-            if (!itemsDAO.doesItemsEntityExist()) {
-                val response = apiService.getData()
-                response.body()?.let { it ->
-                    it.map {
-                        val itemsEntity = ItemsEntity(
-                            Random().nextInt(999 - 1),
-                            it.name,
-                            it.username,
-                            it.email,
-                            it.phone,
-                            it.website,
-                            it.address.street,
-                            it.address.suite,
-                            it.address.city,
-                            it.address.zipcode,
-                            it.company.name,
-                            it.company.catchPhrase,
-                            it.company.bs,
-                            it.address.geo.lat,
-                            it.address.geo.lng,
-                        )
-                        itemsDAO.insertItemsEntity(itemsEntity)
+            itemsDAO.doesItemsEntityExist().collect {
+                if (!it) {
+                    val response = apiService.getData()
+                    response.body()?.let { it ->
+                        it.map { it ->
+                            val itemsEntity = ItemsEntity(
+                                Random().nextInt(999 - 1),
+                                it.name,
+                                it.username,
+                                it.email,
+                                it.phone,
+                                it.website,
+                                it.address.street,
+                                it.address.suite,
+                                it.address.city,
+                                it.address.zipcode,
+                                it.company.name,
+                                it.company.catchPhrase,
+                                it.company.bs,
+                                it.address.geo.lat,
+                                it.address.geo.lng,
+                            )
+                            itemsDAO.insertItemsEntity(itemsEntity)
+                        }
                     }
                 }
             }
         }
     }
 
-    override suspend fun showData(): List<ItemsModel> {
+    override suspend fun showData(): Flow<List<ItemsModel>> {
         return withContext(Dispatchers.IO) {
             val itemsEntity = itemsDAO.getItemsEntities()
-            itemsEntity.map{
-                ItemsModel(
-                    it.id,
-                    it.name,
-                    it.username,
-                    it.email,
-                    it.phone,
-                    it.website,
-                    it.street,
-                    it.suite,
-                    it.city,
-                    it.zipcode,
-                    it.nameCompany,
-                    it.catchPhrase,
-                    it.bs,
-                    it.lat,
-                    it.lng
-                )
+            itemsEntity.map { itemsList ->
+                itemsList.map {
+                    ItemsModel(
+                        it.id,
+                        it.name,
+                        it.username,
+                        it.email,
+                        it.phone,
+                        it.website,
+                        it.street,
+                        it.suite,
+                        it.city,
+                        it.zipcode,
+                        it.nameCompany,
+                        it.catchPhrase,
+                        it.bs,
+                        it.lat,
+                        it.lng
+                    )
+                }
             }
         }
     }
@@ -131,26 +137,29 @@ class ItemsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getFavorites(): List<FavoritesModel> {
+    override suspend fun getFavorites(): Flow<List<FavoritesModel>> {
         return withContext(Dispatchers.IO) {
             val favoritesEntity = itemsDAO.getFavoritesEntities()
-            favoritesEntity.map{
-                FavoritesModel(
-                    it.id,
-                    it.name,
-                    it.username,
-                    it.email,
-                    it.phone,
-                    it.website,
-                    it.street,
-                    it.suite,
-                    it.city,
-                    it.zipcode,
-                    it.nameCompany,
-                    it.catchPhrase,
-                    it.bs,
-                    it.lat,
-                    it.lng)
+            favoritesEntity.map { favoritesList ->
+                favoritesList.map {
+                    FavoritesModel(
+                        it.id,
+                        it.name,
+                        it.username,
+                        it.email,
+                        it.phone,
+                        it.website,
+                        it.street,
+                        it.suite,
+                        it.city,
+                        it.zipcode,
+                        it.nameCompany,
+                        it.catchPhrase,
+                        it.bs,
+                        it.lat,
+                        it.lng
+                    )
+                }
             }
         }
     }

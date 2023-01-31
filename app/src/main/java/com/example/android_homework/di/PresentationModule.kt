@@ -9,6 +9,7 @@ import com.example.android_homework.presentation.view.home.items.DetailsPresente
 import com.example.android_homework.presentation.view.home.items.ItemsPresenter
 import com.example.android_homework.presentation.view.home.MainScreenPresenter
 import com.example.android_homework.presentation.view.home.NestedPresenter
+import com.example.android_homework.presentation.view.home.items.FavoritesPresenter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,4 +53,11 @@ class PresentationModule {
     fun provideMainScreenPresenter(authInteractor: AuthInteractor): MainScreenPresenter {
         return MainScreenPresenter(authInteractor)
     }
+
+    @Provides
+    fun provideFavoritesPresenter(itemsInteractor: ItemsInteractor): FavoritesPresenter {
+        return FavoritesPresenter(itemsInteractor)
+    }
+
+
 }
