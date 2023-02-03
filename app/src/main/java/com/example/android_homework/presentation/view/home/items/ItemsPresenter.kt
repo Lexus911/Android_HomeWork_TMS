@@ -25,20 +25,8 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
         itemsView = context
     }
 
-    fun getData(){
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
-            try {
-                val job = launch {
-                    itemsInteractor.getData()
-
-//                    itemsView.dataReceived(listItems)
-                }
-                job.join()
-                job.cancel()
-            } catch (e: Exception){
-                Log.w("exception","getData FAILED")
-            }
-        }
+    suspend fun getData(){
+        itemsInteractor.getData()
     }
 
     fun elementSelected(name: String, username: String, email: String){

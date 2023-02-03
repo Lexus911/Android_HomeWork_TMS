@@ -49,7 +49,10 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
         itemsAdapter = ItemsAdapter(this)
         viewBinding.recyclerView.adapter = itemsAdapter
 
-        itemsPresenter.getData()
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            itemsPresenter.getData()
+        }
+
 
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             itemsPresenter.listItems.catch {
@@ -61,6 +64,8 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
                     }
                 }
         }
+
+
     }
 
     override fun onElementSelected(name: String, username: String, email: String) {
