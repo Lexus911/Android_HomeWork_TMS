@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.android_homework.data.database.FavoritesEntity
 import com.example.android_homework.data.database.ItemsEntity
+import com.example.android_homework.data.database.UsersEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -27,6 +28,7 @@ interface ItemsDAO {
     fun findItemEntityById(searchId: Int): ItemsEntity
 
 
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertFavoritesEntity(favoritesEntity: FavoritesEntity)
 
@@ -36,4 +38,11 @@ interface ItemsDAO {
     @Query("DELETE FROM FavoritesEntity WHERE id =:id")
     fun deleteFavEntityById(id: Int)
 
+
+
+    @Insert
+    fun insertUsersEntity(usersEntity: UsersEntity)
+
+    @Query("SELECT * From UsersEntity")
+    fun getUsersEntities(): List<UsersEntity>
 }

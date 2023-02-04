@@ -27,7 +27,7 @@ class ItemsRepositoryImpl @Inject constructor(
                 if (!it) {
                     val response = apiService.getData()
                     response.body()?.let { it ->
-                        it.map { it ->
+                        it.map {it ->
                             val itemsEntity = ItemsEntity(
                                 Random().nextInt(999 - 1),
                                 it.name,
@@ -133,7 +133,8 @@ class ItemsRepositoryImpl @Inject constructor(
                 itemsEntity.catchPhrase,
                 itemsEntity.bs,
                 itemsEntity.lat,
-                itemsEntity.lng)
+                itemsEntity.lng
+            )
         }
     }
 

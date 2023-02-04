@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentRegistrationBinding
+import com.example.android_homework.presentation.model.UsersModel
 import com.example.android_homework.utils.NavHelper.setGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -46,13 +47,20 @@ class RegistrationFragment : Fragment(), RegistrationView {
             } else if (viewBinding.etText4.text.toString().isEmpty()) {
                 viewBinding.etText4.error = getString(R.string.error_field_password)
             } else {
-                registrationPresenter.registerUser()
+                registrationPresenter.registerUser(
+                    UsersModel(
+                        null,
+                        viewBinding.etText5.text.toString(),
+                        viewBinding.etText3.text.toString(),
+                        viewBinding.etText6.text.toString(),
+                        viewBinding.etText4.text.toString()
+                    )
+                )
             }
         }
     }
 
-    override fun registerUser() {
+    override fun userRegisteredIn() {
         setGraph(R.navigation.main_graph)
     }
-
 }

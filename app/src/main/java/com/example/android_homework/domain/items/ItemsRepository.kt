@@ -5,6 +5,7 @@ import com.example.android_homework.presentation.model.ItemsModel
 import kotlinx.coroutines.flow.Flow
 
 interface ItemsRepository {
+
     suspend fun getData()
 
     suspend fun showData(): Flow<List<ItemsModel>>
@@ -15,8 +16,9 @@ interface ItemsRepository {
 
     suspend fun deleteFavById(id: Int)
 
-    suspend fun findItemById(Id: Int): ItemsModel
+    suspend fun findItemById(id: Int): ItemsModel
 
     suspend fun getFavorites(): Flow<List<FavoritesModel>>
+
 
 }

@@ -2,6 +2,7 @@ package com.example.android_homework.domain.auth
 
 
 import com.example.android_homework.presentation.model.UserModel
+import com.example.android_homework.presentation.model.UsersModel
 import javax.inject.Inject
 
 class AuthInteractor @Inject constructor(private val authRepository: AuthRepository) {
@@ -28,5 +29,13 @@ class AuthInteractor @Inject constructor(private val authRepository: AuthReposit
 
     suspend fun checkButtonPush(): Boolean{
        return authRepository.checkButtonPush()
+    }
+
+    suspend fun registerUser(usersModel: UsersModel){
+        authRepository.registerUser(usersModel)
+    }
+
+    suspend fun showUsers(): List<UsersModel> {
+        return authRepository.showUsers()
     }
 }

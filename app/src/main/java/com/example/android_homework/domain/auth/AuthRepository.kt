@@ -1,6 +1,7 @@
 package com.example.android_homework.domain.auth
 
 import com.example.android_homework.presentation.model.UserModel
+import com.example.android_homework.presentation.model.UsersModel
 
 
 interface AuthRepository {
@@ -16,4 +17,8 @@ interface AuthRepository {
     suspend fun buttonPressed()
 
     suspend fun checkButtonPush(): Boolean
+
+    suspend fun registerUser(usersModel: UsersModel)
+
+    suspend fun showUsers(): List<UsersModel>
 }

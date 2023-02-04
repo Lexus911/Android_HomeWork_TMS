@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentMainScreenBinding
+import com.example.android_homework.presentation.model.UsersModel
 import com.example.android_homework.utils.NavHelper.setGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -60,6 +61,10 @@ class MainScreenFragment : Fragment(), MainScreenView {
     @SuppressLint("SetTextI18n")
     override fun getUserName(userName: String, userPassword: String) {
         viewBinding.tvMainscreen.text = "${userName}\n${userPassword}"
+    }
+
+    override fun getUsersData(usersData: List<UsersModel>) {
+        viewBinding.tvMainscreenReg.text = "$usersData"
     }
 
     override fun backToLogin() {

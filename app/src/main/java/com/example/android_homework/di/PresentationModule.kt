@@ -35,8 +35,8 @@ class PresentationModule {
     }
 
     @Provides
-    fun provideRegistrationPresenter(): RegistrationPresenter{
-        return RegistrationPresenter()
+    fun provideRegistrationPresenter(authInteractor: AuthInteractor): RegistrationPresenter{
+        return RegistrationPresenter(authInteractor)
     }
 
     @Provides

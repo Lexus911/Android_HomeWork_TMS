@@ -23,9 +23,9 @@ class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepo
         itemsRepository.deleteFavById(id)
     }
 
-    suspend fun findItem(searchId: Int): ItemsModel{
-        return itemsRepository.findItemById(searchId)
-    }
+//    suspend fun findItem(searchId: Int): ItemsModel{
+//        return itemsRepository.findItemById(searchId)
+//    }
 
     suspend fun onFavClicked(id: Int){
         val foundItem = itemsRepository.findItemById(id)
@@ -35,4 +35,6 @@ class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepo
     suspend fun getFavorites(): Flow<List<FavoritesModel>>{
         return itemsRepository.getFavorites()
     }
+
+
 }

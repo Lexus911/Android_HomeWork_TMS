@@ -23,9 +23,14 @@ class MainScreenPresenter @Inject constructor(private val authInteractor: AuthIn
         CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
             try {
                 val job = launch {
+
                     val userName = authInteractor.getUserCreds().userName
                     val userPassword = authInteractor.getUserCreds().userPassword
+                    val usersData = authInteractor.showUsers()
+
                     mainScreenView.getUserName(userName, userPassword)
+
+                    mainScreenView.getUsersData(usersData)
                 }
                 job.join()
                 job.cancel()
