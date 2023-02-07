@@ -26,8 +26,8 @@ class PeriodWorker @AssistedInject constructor(
         try {
             CoroutineScope(Dispatchers.IO).launch {
                 Log.w("doWork called", "getData")
-                authRepositoryImpl.registerUser(UsersModel(null, "Max","BigMac","" +
-                        "abc@gmail.com","password"))
+//                authRepositoryImpl.registerUser(UsersModel(null, "Max","BigMac","" +
+//                        "abc@gmail.com","password"))
             }
         }catch (e: Exception){
             Log.w("doWork failed", e.toString())

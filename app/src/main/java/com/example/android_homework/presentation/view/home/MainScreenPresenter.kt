@@ -26,10 +26,9 @@ class MainScreenPresenter @Inject constructor(private val authInteractor: AuthIn
 
                     val userName = authInteractor.getUserCreds().userName
                     val userPassword = authInteractor.getUserCreds().userPassword
-                    val usersData = authInteractor.showUsers()
-
                     mainScreenView.getUserName(userName, userPassword)
 
+                    val usersData = authInteractor.showUsers()
                     mainScreenView.getUsersData(usersData)
                 }
                 job.join()

@@ -27,6 +27,9 @@ interface ItemsDAO {
     @Query("SELECT * From ItemsEntity WHERE id = :searchId")
     fun findItemEntityById(searchId: Int): ItemsEntity
 
+    @Query("UPDATE ItemsEntity SET favorite =:favorite WHERE id =:id")
+    fun updateFavorite(favorite: Boolean, id: Int)
+
 
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

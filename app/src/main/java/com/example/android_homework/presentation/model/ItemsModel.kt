@@ -16,4 +16,5 @@ data class ItemsModel(
     val bs: String,
     val lat: String,
     val lng: String,
+    val favorite: Boolean,
 )

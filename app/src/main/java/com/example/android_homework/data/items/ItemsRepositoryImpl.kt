@@ -26,8 +26,8 @@ class ItemsRepositoryImpl @Inject constructor(
             itemsDAO.doesItemsEntityExist().collect {
                 if (!it) {
                     val response = apiService.getData()
-                    response.body()?.let { it ->
-                        it.map {it ->
+                    response.body()?.let { response ->
+                        response.map {it ->
                             val itemsEntity = ItemsEntity(
                                 Random().nextInt(999 - 1),
                                 it.name,
@@ -44,6 +44,7 @@ class ItemsRepositoryImpl @Inject constructor(
                                 it.company.bs,
                                 it.address.geo.lat,
                                 it.address.geo.lng,
+                                !it.favorite
                             )
                             itemsDAO.insertItemsEntity(itemsEntity)
                         }
@@ -73,7 +74,8 @@ class ItemsRepositoryImpl @Inject constructor(
                         it.catchPhrase,
                         it.bs,
                         it.lat,
-                        it.lng
+                        it.lng,
+                        it.favorite
                     )
                 }
             }
@@ -98,7 +100,9 @@ class ItemsRepositoryImpl @Inject constructor(
                     itemsModel.catchPhrase,
                     itemsModel.bs,
                     itemsModel.lat,
-                    itemsModel.lng)
+                    itemsModel.lng,
+                    itemsModel.favorite
+                )
             )
         }
     }
@@ -133,7 +137,8 @@ class ItemsRepositoryImpl @Inject constructor(
                 itemsEntity.catchPhrase,
                 itemsEntity.bs,
                 itemsEntity.lat,
-                itemsEntity.lng
+                itemsEntity.lng,
+                itemsEntity.favorite
             )
         }
     }
@@ -158,10 +163,17 @@ class ItemsRepositoryImpl @Inject constructor(
                         it.catchPhrase,
                         it.bs,
                         it.lat,
-                        it.lng
+                        it.lng,
+                        it.favorite,
                     )
                 }
             }
+        }
+    }
+
+    override suspend fun updateFavorite(favorite: Boolean, id: Int) {
+        return withContext(Dispatchers.IO) {
+            itemsDAO.updateFavorite(favorite, id)
         }
     }
 }

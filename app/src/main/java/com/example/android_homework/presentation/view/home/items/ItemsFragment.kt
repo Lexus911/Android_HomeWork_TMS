@@ -53,7 +53,6 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
             itemsPresenter.getData()
         }
 
-
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             itemsPresenter.listItems.catch {
                 Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
@@ -64,8 +63,6 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
                     }
                 }
         }
-
-
     }
 
     override fun onElementSelected(name: String, username: String, email: String) {
@@ -78,6 +75,10 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
     override fun onDeleteClicked(id: Int) {
         itemsPresenter.deleteItem(id)
+    }
+
+    override fun updateFavorite(favorite: Boolean, id: Int) {
+        itemsPresenter.updateFavorite(favorite, id)
     }
 
     override fun dataReceived(list: List<ItemsModel>) {

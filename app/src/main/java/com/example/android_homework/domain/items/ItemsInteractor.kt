@@ -36,5 +36,9 @@ class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepo
         return itemsRepository.getFavorites()
     }
 
+    suspend fun updateFavorite(favorite: Boolean, id: Int){
+        return itemsRepository.updateFavorite(favorite, id)
+    }
+
 
 }

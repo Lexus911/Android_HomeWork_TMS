@@ -20,5 +20,5 @@ interface ItemsRepository {
 
     suspend fun getFavorites(): Flow<List<FavoritesModel>>
 
-
+    suspend fun updateFavorite(favorite: Boolean, id: Int)
 }

@@ -30,6 +30,10 @@ class ItemsViewHolder(private val viewBinding: ItemsSongsBinding,
         }
 
         viewBinding.btnFav.setOnClickListener{
+            itemsListener.updateFavorite(!itemsModel.favorite, itemsModel.id)
+
+            viewBinding.btnFav.isSelected = itemsModel.favorite
+
             itemsListener.onFavClicked(itemsModel.id)
         }
 

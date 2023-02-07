@@ -1,5 +1,7 @@
 package com.example.android_homework.presentation.model
 
+import androidx.room.ColumnInfo
+
 data class FavoritesModel (
     val id: Int,
     val name: String,
@@ -16,4 +18,5 @@ data class FavoritesModel (
     val bs: String,
     val lat: String,
     val lng: String,
+    val favorite: Boolean,
 )
