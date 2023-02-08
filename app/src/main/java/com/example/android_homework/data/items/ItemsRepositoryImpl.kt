@@ -44,7 +44,7 @@ class ItemsRepositoryImpl @Inject constructor(
                                 it.company.bs,
                                 it.address.geo.lat,
                                 it.address.geo.lng,
-                                !it.favorite
+                                it.favorite
                             )
                             itemsDAO.insertItemsEntity(itemsEntity)
                         }

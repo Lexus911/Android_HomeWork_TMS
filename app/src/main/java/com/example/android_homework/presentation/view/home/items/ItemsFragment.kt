@@ -89,7 +89,6 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
         val detailsFragment = DetailsFragment()
         val bundle = Bundle()
 
-
         bundle.putString(KEY_TITLE, name)
         bundle.putString(KEY_DESCRIPTION, username)
         bundle.putString(KEY_TIME, email)

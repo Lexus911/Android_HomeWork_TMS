@@ -24,9 +24,10 @@ class ItemsViewHolder(private val viewBinding: ItemsSongsBinding,
         viewBinding.tvWebsite.text = "Website " + itemsModel.website
         viewBinding.tvBs.text = "Business: " + itemsModel.bs
         viewBinding.tvCatchPhrase.text = "Catch phrase: " + itemsModel.catchPhrase
+        viewBinding.btnFav.isSelected = itemsModel.favorite
 
         itemView.setOnClickListener{
-            itemsListener.onElementSelected( itemsModel.name, itemsModel.username, itemsModel.email)
+            itemsListener.onElementSelected(itemsModel.name, itemsModel.username, itemsModel.email)
         }
 
         viewBinding.btnFav.setOnClickListener{
