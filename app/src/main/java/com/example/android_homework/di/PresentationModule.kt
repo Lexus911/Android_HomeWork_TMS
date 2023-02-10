@@ -5,18 +5,15 @@ import com.example.android_homework.domain.items.ItemsInteractor
 import com.example.android_homework.presentation.view.MainPresenter
 import com.example.android_homework.presentation.view.auth.LoginPresenter
 import com.example.android_homework.presentation.view.auth.RegistrationPresenter
-import com.example.android_homework.presentation.view.home.items.DetailsPresenter
-import com.example.android_homework.presentation.view.home.items.ItemsPresenter
 import com.example.android_homework.presentation.view.home.MainScreenPresenter
 import com.example.android_homework.presentation.view.home.NestedPresenter
+import com.example.android_homework.presentation.view.home.items.DetailsPresenter
 import com.example.android_homework.presentation.view.home.items.FavoritesPresenter
+import com.example.android_homework.presentation.view.home.items.ItemsPresenter
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
 class PresentationModule {
 
     @Provides

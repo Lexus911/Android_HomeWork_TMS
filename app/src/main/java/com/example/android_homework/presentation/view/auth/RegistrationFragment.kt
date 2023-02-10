@@ -1,18 +1,17 @@
 package com.example.android_homework.presentation.view.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.example.android_homework.App
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentRegistrationBinding
 import com.example.android_homework.presentation.model.UsersModel
 import com.example.android_homework.utils.NavHelper.setGraph
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class RegistrationFragment : Fragment(), RegistrationView {
 
     private var _viewBinding: FragmentRegistrationBinding? = null
@@ -31,6 +30,7 @@ class RegistrationFragment : Fragment(), RegistrationView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         registrationPresenter.setView(this)
 

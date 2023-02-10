@@ -3,20 +3,20 @@ package com.example.android_homework.presentation.view.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
+import com.example.android_homework.App
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentMainScreenBinding
 import com.example.android_homework.presentation.model.UsersModel
 import com.example.android_homework.utils.NavHelper.setGraph
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class MainScreenFragment : Fragment(), MainScreenView {
     private var _viewBinding: FragmentMainScreenBinding? = null
     private val viewBinding get() = _viewBinding!!
@@ -35,6 +35,7 @@ class MainScreenFragment : Fragment(), MainScreenView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         mainScreenPresenter.setView(this)
 

@@ -10,15 +10,10 @@ import com.example.android_homework.domain.items.ItemsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Named
 
 @Module
-@InstallIn(SingletonComponent::class)
 abstract class DataModule {
 
     @Binds
@@ -32,7 +27,7 @@ abstract class DataModule {
         private const val BASE_URL = "https://jsonplaceholder.typicode.com"
 
         @Provides
-        fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferencesHelper {
+        fun provideSharedPreferences(context: Context): SharedPreferencesHelper {
             return SharedPreferencesHelper(context.getSharedPreferences(SP_KEY,
                 Context.MODE_PRIVATE
             ))

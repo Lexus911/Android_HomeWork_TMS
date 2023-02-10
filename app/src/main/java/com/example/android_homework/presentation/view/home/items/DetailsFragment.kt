@@ -1,18 +1,17 @@
 package com.example.android_homework.presentation.view.home.items
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.example.android_homework.App
 import com.example.android_homework.R
 import com.example.android_homework.databinding.FragmentDetailsBinding
 import com.example.android_homework.utils.NavHelper.navigate
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
-@AndroidEntryPoint
 class DetailsFragment : Fragment(), DetailsView {
     private var _viewBinding: FragmentDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
@@ -30,6 +29,7 @@ class DetailsFragment : Fragment(), DetailsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         detailsPresenter.setView(this)
 

@@ -1,20 +1,20 @@
 package com.example.android_homework.presentation.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.android_homework.App
 import com.example.android_homework.R
 import com.example.android_homework.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationChangedListener {
 
     private lateinit var binding: ActivityMainBinding
@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationC
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
+        (applicationContext as App).provideAppComponent().inject(this)
 
         mainPresenter.setView(this)
         mainPresenter.checkUserExists()
