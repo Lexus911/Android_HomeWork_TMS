@@ -1,6 +1,7 @@
 package com.example.android_homework.data.items
 
 
+import android.util.Log
 import com.example.android_homework.data.database.FavoritesEntity
 import com.example.android_homework.data.database.ItemsEntity
 import com.example.android_homework.data.database.dao.ItemsDAO
@@ -8,12 +9,18 @@ import com.example.android_homework.data.service.ApiService
 import com.example.android_homework.domain.items.ItemsRepository
 import com.example.android_homework.presentation.model.FavoritesModel
 import com.example.android_homework.presentation.model.ItemsModel
+import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
+import kotlin.collections.EmptyMap.forEach
+import kotlin.collections.EmptySet.forEach
 
 
 class ItemsRepositoryImpl @Inject constructor(
@@ -21,13 +28,19 @@ class ItemsRepositoryImpl @Inject constructor(
     private val itemsDAO: ItemsDAO
 
 ): ItemsRepository {
-    override suspend fun getData() {
-        return withContext(Dispatchers.IO) {
-            itemsDAO.doesItemsEntityExist().collect {
-                if (!it) {
+
+    private val compositeDisposable = CompositeDisposable()
+
+    override fun getData(): Completable {
+
+        return itemsDAO.doesItemsEntityExist()
+            .subscribeOn(Schedulers.io())
+            .doAfterNext{
+                if(!it){
                     val response = apiService.getData()
-                    response.body()?.let { response ->
-                        response.map {it ->
+                    val getData = response.subscribeOn(Schedulers.io())
+                        .doAfterSuccess {
+                            .forEach{
                             val itemsEntity = ItemsEntity(
                                 Random().nextInt(999 - 1),
                                 it.name,
@@ -46,19 +59,31 @@ class ItemsRepositoryImpl @Inject constructor(
                                 it.address.geo.lng,
                                 it.favorite
                             )
-                            itemsDAO.insertItemsEntity(itemsEntity)
+                                itemsDAO.insertItemsEntity(itemsEntity)
+                            }
                         }
-                    }
+                        .doOnError {
+                            Log.w("error", "when making request")
+                        }
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe()
+                    compositeDisposable.add(getData)
                 }
             }
-        }
+            .doOnComplete{
+                compositeDisposable.dispose()
+            }
+            .ignoreElements()
+            .observeOn(AndroidSchedulers.mainThread())
+
     }
 
-    override suspend fun showData(): Flow<List<ItemsModel>> {
-        return withContext(Dispatchers.IO) {
+    override fun showData(): io.reactivex.Observable<List<ItemsModel>> {
+
             val itemsEntity = itemsDAO.getItemsEntities()
-            itemsEntity.map { itemsList ->
-                itemsList.map {
+           return itemsEntity.subscribeOn(Schedulers.io())
+               .map {
+                it.map {
                     ItemsModel(
                         it.id,
                         it.name,
@@ -79,7 +104,7 @@ class ItemsRepositoryImpl @Inject constructor(
                     )
                 }
             }
-        }
+               .observeOn(AndroidSchedulers.mainThread())
     }
 
     override suspend fun favClicked(itemsModel: ItemsModel) {

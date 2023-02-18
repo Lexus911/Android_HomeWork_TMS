@@ -22,7 +22,9 @@ abstract class ItemsDataBase : RoomDatabase() {
                     context.applicationContext,
                     ItemsDataBase::class.java,
                     DATABASE_NAME
-                ).build()
+                )
+                .allowMainThreadQueries()
+                .build()
                 .also{ DATABASE_INSTANCE = it }
         }
     }

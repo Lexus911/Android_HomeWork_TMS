@@ -49,21 +49,10 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
         itemsAdapter = ItemsAdapter(this)
         viewBinding.recyclerView.adapter = itemsAdapter
 
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            itemsPresenter.getData()
-        }
+        itemsPresenter.getData()
 
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            itemsPresenter.listItems.catch {
-                Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
-            }
-                .collect{ flowList ->
-                    flowList.collect{ list ->
-                        itemsAdapter.submitList(list)
-                    }
-                }
-        }
     }
+
 
     override fun onElementSelected(name: String, username: String, email: String) {
         itemsPresenter.elementSelected(name, username, email)

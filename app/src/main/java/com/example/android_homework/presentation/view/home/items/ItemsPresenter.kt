@@ -3,6 +3,7 @@ package com.example.android_homework.presentation.view.home.items
 import android.util.Log
 import com.example.android_homework.domain.items.ItemsInteractor
 import com.example.android_homework.presentation.model.ItemsModel
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,15 +20,28 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
         Log.w("Items exceptionHandlerCalled", exception.toString())
     }
 
-    val listItems = flow<Flow<List<ItemsModel>>>{ emit(itemsInteractor.showData()) }
+    private val compositeDisposable = CompositeDisposable()
 
     fun setView(context: ItemsView){
         itemsView = context
     }
 
-    suspend fun getData(){
-        itemsInteractor.getData()
+     fun getData(){
+         val getData = itemsInteractor.getData().subscribe({
+
+         },{
+
+         })
+         compositeDisposable.add(getData)
+
+         val showData = itemsInteractor.showData().subscribe({
+             itemsView.dataReceived(it)
+         },{
+
+         })
+         compositeDisposable.add(showData)
     }
+
 
     fun elementSelected(name: String, username: String, email: String){
         itemsView.goToDetails(name, username, email)
@@ -74,4 +88,5 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
             }
         }
     }
+
 }

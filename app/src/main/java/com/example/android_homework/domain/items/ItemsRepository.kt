@@ -2,13 +2,15 @@ package com.example.android_homework.domain.items
 
 import com.example.android_homework.presentation.model.FavoritesModel
 import com.example.android_homework.presentation.model.ItemsModel
+import io.reactivex.Completable
+import io.reactivex.Observable
 import kotlinx.coroutines.flow.Flow
 
 interface ItemsRepository {
 
-    suspend fun getData()
+    fun getData(): Completable
 
-    suspend fun showData(): Flow<List<ItemsModel>>
+    fun showData(): Observable<List<ItemsModel>>
 
     suspend fun favClicked(itemsModel: ItemsModel)
 
