@@ -1,6 +1,7 @@
 package com.example.android_homework.data.items
 
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.example.android_homework.data.database.FavoritesEntity
 import com.example.android_homework.data.database.ItemsEntity
@@ -19,8 +20,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
-import kotlin.collections.EmptyMap.forEach
-import kotlin.collections.EmptySet.forEach
+
 
 
 class ItemsRepositoryImpl @Inject constructor(
@@ -31,6 +31,7 @@ class ItemsRepositoryImpl @Inject constructor(
 
     private val compositeDisposable = CompositeDisposable()
 
+    @SuppressLint("SuspiciousIndentation")
     override fun getData(): Completable {
 
         return itemsDAO.doesItemsEntityExist()
@@ -40,7 +41,7 @@ class ItemsRepositoryImpl @Inject constructor(
                     val response = apiService.getData()
                     val getData = response.subscribeOn(Schedulers.io())
                         .doAfterSuccess {
-                            .forEach{
+                            it.forEach{
                             val itemsEntity = ItemsEntity(
                                 Random().nextInt(999 - 1),
                                 it.name,
